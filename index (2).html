@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fc">
+  <meta name="description" content="A fictional banking dashboard real. No real accounts, funds, or financial services.">
+  <title>Bangkok Bank real</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #1d2b42;
+      background: #f4f7fc;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    * { box-sizing: border-box; }
+    body { min-width: 320px; min-height: 100vh; margin: 0; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    .icon-library { position: absolute; width: 0; height: 0; overflow: hidden; }
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid #3478d480;
+      outline-offset: 3px;
+    }
+    .icon { width: 18px; height: 18px; flex: 0 0 auto; stroke: currentColor; }
+    .icon-sm { width: 15px; height: 15px; }
+    .icon-lg { width: 21px; height: 21px; }
+    .icon-tile {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid #e3ebf7;
+      border-radius: 11px;
+      background: #f0f5ff;
+      color: #2864d7;
+    }
+    .card-heading { display: flex; align-items: center; gap: 10px; }
+    .card-heading .icon-tile { width: 34px; height: 34px; }
+    .card-heading h2 { line-height: 1.35; }
+    .button-content { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .page-canvas {
+      width: min(100%, 1920px);
+      min-height: 1080px;
+      margin: 0 auto;
+      background: #f4f7fc;
+    }
+    .real-notice {
+      padding: 10px 16px;
+      border-bottom: 1px solid #eed9a9;
+      background: #fff4dd;
+      color: #714d12;
+      font-size: 12px;
+      font-weight: 750;
+      text-align: center;
+    }
+    .header {
+      border-bottom: 1px solid #173d76;
+      background: linear-gradient(120deg, #123b7a, #2463bf 60%, #3478d4);
+    }
+    .header-inner, main {
+      width: calc(100% - 64px);
+      margin: 0 auto;
+    }
+    .header-inner {
+      display: flex;
+      min-height: 102px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-nav.header-inner { min-height: 48px; justify-content: flex-start; }
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+      font-size: clamp(27px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -1.1px;
+    }
+    .brand-mark {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border: 1px solid #ffffff55;
+      border-radius: 16px;
+      background: #ffffff20;
+      color: #fff;
+      font-size: 25px;
+    }
+    .brand-copy { display: grid; gap: 4px; }
+    .brand-real { color: #d7e7ff; font-size: 9px; font-weight: 750; letter-spacing: 1.6px; }
+    .environment {
+      padding: 7px 10px;
+      border: 1px solid #ffffff66;
+      border-radius: 20px;
+      background: #ffffff18;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 750;
+    }
+    .local-time {
+      display: grid;
+      gap: 3px;
+      color: #d6e5fb;
+      font-size: 10px;
+      text-align: right;
+    }
+    .local-time strong { color: #fff; font-size: 11px; font-variant-numeric: tabular-nums; }
+    .flag { width: 30px; height: 20px; flex: 0 0 auto; border: 1px solid #ffffff80; border-radius: 2px; }
+    .header-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 0 12px;
+    }
+    .header-nav a {
+      padding: 8px 10px;
+      border-radius: 7px;
+      color: #e3edfc;
+      font-size: 11px;
+      font-weight: 650;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .header-nav a:hover { background: #ffffff20; color: #fff; }
+    main { min-height: 680px; padding: 42px 0; }
+    .page-heading { margin-bottom: 22px; }
+    .page-heading h1 {
+      margin: 0;
+      color: #102b55;
+      font-size: clamp(24px, 4vw, 32px);
+      letter-spacing: -.8px;
+    }
+    .page-heading p {
+      margin: 8px 0 0;
+      color: #748197;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: stretch;
+      column-gap: 20px;
+      row-gap: 20px;
+    }
+    .workspace {
+      grid-column: span 3;
+      display: grid;
+      min-height: 250px;
+      place-items: center;
+      padding: 24px;
+      border: 1px solid #e1e8f1;
+      border-radius: 14px;
+      background: #fff;
+      text-align: center;
+      margin: 0;
+      box-shadow: 0 12px 32px #1936590d;
+      transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+    }
+    .workspace:hover { transform: translateY(-3px); border-color: #d2def0; box-shadow: 0 18px 38px #19365916; }
+    .workspace-inner { max-width: 430px; }
+    .workspace-icon {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 14px;
+      place-items: center;
+      border: 1px solid #dbe7fa;
+      border-radius: 17px;
+      background: linear-gradient(145deg, #edf3ff, #e3edff);
+      color: #2864d7;
+      box-shadow: inset 0 1px 0 #fff, 0 8px 20px #2864d714;
+    }
+    .workspace-icon .icon { width: 25px; height: 25px; }
+    .workspace h2 { margin: 0; color: #102b55; font-size: 17px; }
+    .balance-heading { display: flex; align-items: center; justify-content: center; gap: 9px; }
+    .balance-visibility {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      border: 1px solid #d8e3f2;
+      border-radius: 8px;
+      background: #fff;
+      color: #42628f;
+    }
+    .balance-visibility:hover { border-color: #a9c2e8; background: #f3f7ff; }
+    .balance-visibility svg { width: 17px; height: 17px; }
+    .balance-visibility .eye-closed { display: none; }
+    .balance-visibility[aria-pressed="true"] .eye-open { display: none; }
+    .balance-visibility[aria-pressed="true"] .eye-closed { display: block; }
+    .workspace p {
+      margin: 8px 0 0;
+      color: #748197;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    .balance-button {
+      min-height: 40px;
+      margin-top: 18px;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 9px;
+      background: #2864d7;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .balance-button:hover { background: #1e52b7; }
+    .real-balance {
+      margin-top: 16px;
+      padding: 16px 20px;
+      border: 1px solid #dce7f7;
+      border-radius: 12px;
+      background: #f7faff;
+    }
+    .real-balance-label {
+      display: block;
+      color: #748197;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .real-balance strong {
+      display: block;
+      margin-top: 5px;
+      color: #173d76;
+      font-size: 25px;
+      font-variant-numeric: tabular-nums;
+    }
+    .real-balance-note { display: block; margin-top: 4px; color: #748197; font-size: 9px; }
+    .personal-card {
+      grid-column: span 3;
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      padding: 19px;
+      border: 1px solid #d9e5f6;
+      border-radius: 14px;
+      background: linear-gradient(155deg, #fff 0%, #f5f8ff 100%);
+      box-shadow: 0 10px 28px #19365912;
+      text-align: left;
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .personal-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px #1936591b; }
+    .personal-card h2 { margin: 0; color: #102b55; font-size: 16px; }
+    .personal-intro { margin: 7px 0 14px; color: #748197; font-size: 10px; line-height: 1.55; }
+    .profile-row { display: grid; justify-items: center; gap: 8px; margin: 14px 0; text-align: center; }
+    .profile-photo {
+      display: grid;
+      width: 112px;
+      height: 112px;
+      overflow: hidden;
+      place-items: center;
+      border-radius: 50%;
+      border: 3px solid #e4edfa;
+      background: #e8f0ff;
+      color: #285aa7;
+      font-size: 22px;
+      font-weight: 800;
+      box-shadow: 0 5px 16px #2864d729;
+      animation: photo-arrive .5s ease both;
+    }
+    .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+    @keyframes photo-arrive { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: scale(1); } }
+    .details-toggle {
+      display: inline-flex;
+      min-height: 36px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 4px;
+      padding: 8px 12px;
+      border: 1px solid #cbdcf5;
+      border-radius: 8px;
+      background: #edf4ff;
+      color: #2459ad;
+      font-size: 10px;
+      font-weight: 750;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .details-toggle:hover { transform: translateY(-1px); background: #e2edff; }
+    .details-toggle:focus-visible { outline: 3px solid #2864d755; outline-offset: 2px; }
+    .details-toggle-icon { transition: transform .25s ease; }
+    .details-toggle[aria-expanded="true"] .details-toggle-icon { transform: rotate(180deg); }
+    .details-panel {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: max-height .4s ease, opacity .25s ease, transform .25s ease, margin .25s ease;
+    }
+    .details-panel.is-open { max-height: 1100px; margin-top: 13px; opacity: 1; transform: translateY(0); }
+    .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .profile-field { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 10px 2px; border-bottom: 1px solid #e4eaf3; }
+    .profile-field span { color: #748197; font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .profile-field strong { color: #243752; font-size: 11px; text-align: right; overflow-wrap: anywhere; }
+    .reward-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+    .reward-item { padding: 10px; border: 1px solid #e7ecf4; border-radius: 10px; background: #f8faff; }
+    .reward-item span { display: block; color: #748197; font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .reward-item strong { display: block; margin-top: 6px; color: #173d76; font-size: 17px; }
+    .reward-safety { margin: 12px 0 0; color: #8b6726; font-size: 10px; line-height: 1.6; }
+    .transfer-card {
+      grid-column: span 3;
+      margin: 0;
+      padding: 19px;
+      border: 1px solid #d9e5f6;
+      border-radius: 14px;
+      background: linear-gradient(155deg, #fff, #f3f7ff);
+      box-shadow: 0 10px 28px #19365912;
+    }
+    .transfer-card h2 { margin: 0; color: #102b55; font-size: 16px; }
+    .transfer-note { margin: 7px 0 15px; color: #748197; font-size: 10px; line-height: 1.55; }
+    .transfer-form { display: grid; gap: 11px; }
+    .transfer-field { display: grid; gap: 5px; }
+    .transfer-field label { color: #596981; font-size: 10px; font-weight: 700; }
+    .transfer-field input, .transfer-field select {
+      width: 100%;
+      min-height: 38px;
+      padding: 8px 10px;
+      border: 1px solid #dce4ef;
+      border-radius: 8px;
+      background: #fff;
+      color: #1d2b42;
+      font: inherit;
+      font-size: 11px;
+    }
+    .transfer-submit, .transfer-confirm, .transfer-cancel {
+      min-height: 38px;
+      padding: 9px 12px;
+      border: 0;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 750;
+    }
+    .transfer-submit, .transfer-confirm { background: #2864d7; color: #fff; }
+    .transfer-submit:hover, .transfer-confirm:hover { background: #1e52b7; }
+    .transfer-cancel { border: 1px solid #dce4ef; background: #fff; color: #38516f; }
+    .transfer-review {
+      margin-top: 14px;
+      padding: 13px;
+      border: 1px solid #dce7f7;
+      border-radius: 10px;
+      background: #fff;
+    }
+    .transfer-review h3 { margin: 0; color: #173d76; font-size: 12px; }
+    .transfer-review p { margin: 7px 0 11px; color: #5f6f86; font-size: 10px; line-height: 1.6; overflow-wrap: anywhere; }
+    .transfer-review-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .transfer-status { margin: 12px 0 0; color: #16845f; font-size: 10px; line-height: 1.5; }
+    .feature-card {
+      grid-column: span 3;
+      min-width: 0;
+      margin: 0;
+      padding: 18px;
+      border: 1px solid #dfe7f2;
+      border-radius: 14px;
+      background: linear-gradient(155deg, #fff, #f8faff);
+      box-shadow: 0 10px 28px #1936590d;
+      transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+    }
+    .feature-card:hover { transform: translateY(-2px); border-color: #d2def0; box-shadow: 0 16px 34px #19365914; }
+    .service-launcher { grid-column: span 6; }
+    .launcher-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+    .launcher-button {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-height: 68px;
+      padding: 12px;
+      border: 1px solid #dce6f4;
+      border-radius: 12px;
+      background: linear-gradient(150deg, #fff, #f9fbff);
+      color: #214a84;
+      font-size: 11px;
+      font-weight: 750;
+      text-align: left;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .launcher-button:hover { transform: translateY(-3px); border-color: #9bb9e8; background: #fff; box-shadow: 0 10px 22px #19365915; }
+    .launcher-icon { display: grid; width: 36px; height: 36px; flex: 0 0 auto; place-items: center; border-radius: 11px; background: #edf4ff; color: #2864d7; }
+    .launcher-copy { display: grid; gap: 5px; color: #214a84; font-size: 11px; font-weight: 750; }
+    .launcher-copy small { color: #748197; font-size: 9px; font-weight: 500; }
+    .service-dialog {
+      width: min(560px, calc(100% - 32px));
+      max-width: 560px;
+      max-height: min(88vh, 760px);
+      padding: 0;
+      overflow: auto;
+      border: 1px solid #dce5f1;
+      border-radius: 16px;
+      background: #f4f7fc;
+      box-shadow: 0 24px 80px #0e24444d;
+    }
+    .service-dialog::backdrop { background: #10223a99; backdrop-filter: blur(3px); }
+    .dialog-header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 15px 18px; border-bottom: 1px solid #e4eaf2; background: #fff; }
+    .dialog-header h2 { margin: 0; color: #102b55; font-size: 15px; }
+    .dialog-close { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid #e0e6ef; border-radius: 10px; background: #fff; color: #52637b; transition: color .2s ease, border-color .2s ease, background .2s ease; }
+    .dialog-close:hover { border-color: #c8d6e9; background: #f5f8fc; color: #173d76; }
+    .dialog-content { padding: 16px; }
+    .dialog-content > [data-feature-panel] { grid-column: auto; }
+    .feature-card h2 { margin: 0; color: #102b55; font-size: 15px; }
+    .feature-copy { margin: 6px 0 13px; color: #748197; font-size: 10px; line-height: 1.55; }
+    .feature-form { display: grid; gap: 10px; }
+    .feature-field { display: grid; gap: 5px; }
+    .feature-field label { color: #596981; font-size: 10px; font-weight: 700; }
+    .feature-field input, .feature-field select {
+      width: 100%;
+      min-height: 37px;
+      padding: 8px 10px;
+      border: 1px solid #dce4ef;
+      border-radius: 8px;
+      background: #fff;
+      color: #1d2b42;
+      font: inherit;
+      font-size: 11px;
+    }
+    .feature-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 8px 11px;
+      border: 0;
+      border-radius: 8px;
+      background: #2864d7;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 750;
+    }
+    .feature-button { transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+    .feature-button:hover { transform: translateY(-1px); background: #1e52b7; box-shadow: 0 5px 12px #2864d729; }
+    .feature-button.secondary { border: 1px solid #dce4ef; background: #fff; color: #38516f; }
+    .feature-status { min-height: 14px; margin: 9px 0 0; color: #16845f; font-size: 9px; line-height: 1.5; }
+    .card-sample {
+      padding: 15px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #153d83, #3478d4);
+      color: #fff;
+    }
+    .card-sample-top, .card-sample-bottom { display: flex; justify-content: space-between; gap: 8px; font-size: 9px; font-weight: 750; }
+    .card-sample-number { margin: 20px 0 14px; font-size: 13px; letter-spacing: 1.6px; }
+    .card-switch-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 13px; color: #536178; font-size: 10px; }
+    .card-switch { min-width: 75px; min-height: 31px; padding: 6px 9px; border: 1px solid #dce4ef; border-radius: 8px; background: #fff; color: #38516f; font-size: 9px; font-weight: 750; }
+    .card-switch[aria-pressed="true"] { border-color: #f1c5c5; background: #fff3f3; color: #a33b3b; }
+    .statement-table { width: 100%; border-collapse: collapse; font-size: 9px; text-align: left; }
+    .statement-table th, .statement-table td { padding: 8px 4px; border-bottom: 1px solid #e7ecf4; }
+    .statement-table th { color: #748197; font-size: 8px; text-transform: uppercase; }
+    .statement-table td:last-child, .statement-table th:last-child { text-align: right; }
+    .statement-list[hidden] { display: none; }
+    .goal-meter { height: 7px; margin: 12px 0 6px; overflow: hidden; border-radius: 8px; background: #e9eef7; }
+    .goal-meter span { display: block; width: 42%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #3478d4, #3ca77e); transition: width .3s ease; }
+    footer { border-top: 1px solid #e8edf4; background: #fff; }
+    .footer-inner { width: calc(100% - 64px); margin: 0 auto; padding: 25px 0 16px; }
+    .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 22px; }
+    .footer-grid h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 9px; color: #18365f; font-size: 11px; }
+    .footer-grid h2 .icon { color: #2864d7; }
+    .footer-grid p, .footer-grid a { margin: 0; color: #748197; font-size: 10px; line-height: 1.8; }
+    .footer-grid a { display: flex; align-items: center; gap: 7px; text-decoration: none; }
+    .footer-grid a .icon { color: #748197; }
+    .footer-grid a:hover { color: #2459ad; text-decoration: underline; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 12px; margin-top: 19px; padding-top: 13px; border-top: 1px solid #e8edf4; color: #748197; font-size: 9px; line-height: 1.6; }
+    .footer-real-note { margin-top: 12px; color: #8b6726; font-size: 9px; line-height: 1.6; }
+    .header-nav a { display: inline-flex; align-items: center; gap: 7px; transition: background .2s ease, color .2s ease; }
+    .header-nav a .icon { width: 14px; height: 14px; }
+    .transfer-card, [data-feature-panel] { transition: box-shadow .25s ease, border-color .25s ease; }
+    :root {
+      --ink: #172b49;
+      --muted: #66758d;
+      --line: #e2e9f2;
+      --blue: #2463bf;
+      --blue-dark: #153d78;
+      --surface: #fff;
+      --canvas: #f3f6fb;
+      background: var(--canvas);
+      color: var(--ink);
+    }
+    body { background: var(--canvas); }
+    .page-canvas {
+      min-height: 1080px;
+      background:
+        radial-gradient(ellipse at 12% 7%, #e7effc 0, transparent 32rem),
+        var(--canvas);
+    }
+    .real-notice {
+      padding: 9px 16px;
+      border-color: #efdfbc;
+      background: #fff8e9;
+      color: #77551b;
+      font-size: 10px;
+      letter-spacing: .055em;
+    }
+    .header {
+      border-bottom: 1px solid #14376d;
+      background: linear-gradient(116deg, #123467 0%, #174b91 48%, #2463bf 100%);
+      box-shadow: 0 8px 24px #142f5517;
+    }
+    .header-inner, main, .footer-inner { width: min(calc(100% - 64px), 1440px); }
+    .header-inner { min-height: 94px; }
+    .header-nav.header-inner { min-height: 50px; }
+    .brand { font-size: clamp(26px, 3vw, 32px); }
+    .brand-mark {
+      border-radius: 15px;
+      background: #ffffff16;
+      box-shadow: inset 0 1px #ffffff32, 0 6px 18px #061b3a22;
+    }
+    .environment {
+      border-color: #ffffff42;
+      background: #ffffff12;
+      letter-spacing: .055em;
+    }
+    .local-time {
+      padding-left: 4px;
+      line-height: 1.5;
+    }
+    .local-time strong { font-size: 12px; }
+    .flag { border-radius: 4px; box-shadow: 0 2px 7px #061b3a35; }
+    .header-nav { gap: 7px; padding-bottom: 10px; }
+    .header-nav a {
+      padding: 9px 12px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      font-size: 11px;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+    }
+    .header-nav a:hover { border-color: #ffffff18; background: #ffffff16; }
+    main { min-height: 0; padding: 36px 0 52px; }
+    .page-heading { margin-bottom: 24px; }
+    .page-heading h1 {
+      color: #152f55;
+      font-size: clamp(25px, 3vw, 30px);
+      font-weight: 750;
+      letter-spacing: -.7px;
+    }
+    .page-heading p { margin-top: 7px; color: var(--muted); font-size: 13px; }
+    .dashboard-grid { align-items: stretch; gap: 18px; }
+    .workspace, .personal-card, .transfer-card, .feature-card {
+      border-color: var(--line);
+      border-radius: 17px;
+      box-shadow: 0 8px 26px #18365b0b, 0 1px 2px #18365b08;
+    }
+    .workspace {
+      min-height: 276px;
+      padding: 24px;
+      background: linear-gradient(148deg, #17427f 0%, #205cac 55%, #2872cb 100%);
+      box-shadow: 0 15px 32px #17427f28, inset 0 1px #ffffff32;
+      color: #fff;
+    }
+    .workspace:hover { border-color: #6395d2; box-shadow: 0 20px 38px #17427f35, inset 0 1px #ffffff32; }
+    .workspace-icon {
+      border: 1px solid #ffffff32;
+      background: #ffffff17;
+      color: #fff;
+      box-shadow: inset 0 1px #ffffff24, 0 7px 20px #0c2d5b28;
+    }
+    .workspace h2 { color: #fff; font-size: 17px; }
+    .workspace p { color: #d4e3f8; }
+    .balance-visibility { border-color: #ffffff3d; background: #ffffff14; color: #fff; }
+    .balance-visibility:hover { border-color: #ffffff80; background: #ffffff25; }
+    .real-balance {
+      border-color: #ffffff30;
+      background: #0e326d3b;
+      box-shadow: inset 0 1px #ffffff15;
+    }
+    .real-balance-label { color: #d0def2; }
+    .real-balance strong { color: #fff; font-size: 27px; letter-spacing: .01em; }
+    .real-balance-note { color: #c4d7f0; }
+    .personal-card, .transfer-card, .feature-card {
+      padding: 21px;
+      background: var(--surface);
+    }
+    .personal-card:hover, .feature-card:hover {
+      border-color: #d4dfed;
+      box-shadow: 0 15px 34px #18365b13;
+    }
+    .personal-card h2, .transfer-card h2, .feature-card h2 { color: #18365f; }
+    .personal-card h2, .transfer-card h2 { font-size: 15px; }
+    .personal-intro, .transfer-note, .feature-copy { color: var(--muted); font-size: 11px; line-height: 1.65; }
+    .icon-tile, .launcher-icon {
+      border-color: #e2eaf5;
+      background: #f1f5fc;
+      color: #245eb0;
+    }
+    .profile-photo { border-color: #dce7f5; box-shadow: 0 6px 18px #204b8420; }
+    .details-toggle {
+      min-height: 40px;
+      border-color: #d8e2f0;
+      border-radius: 10px;
+      background: #f5f8fd;
+      color: #245394;
+      font-size: 11px;
+    }
+    .details-toggle:hover { background: #edf3fb; }
+    .profile-field { border-color: #e9eef5; }
+    .profile-field span, .reward-item span { color: #718097; }
+    .profile-field strong { color: #243852; }
+    .reward-item { border-color: #e7edf5; background: #f8fafd; }
+    .reward-item strong { color: #19467f; }
+    .reward-safety { color: #84601e; }
+    .service-launcher { background: linear-gradient(150deg, #fff 0%, #f9fbff 100%); }
+    .launcher-actions { gap: 11px; }
+    .launcher-button {
+      min-height: 72px;
+      border-color: #e3eaf3;
+      border-radius: 13px;
+      background: #fff;
+    }
+    .launcher-button:hover { border-color: #b8cbe5; box-shadow: 0 9px 22px #173a6812; }
+    .launcher-copy { color: #1e3c66; font-size: 12px; }
+    .launcher-copy small { color: #748197; font-size: 10px; line-height: 1.4; }
+    .transfer-field label, .feature-field label { color: #465b77; font-size: 11px; }
+    .transfer-field input, .transfer-field select,
+    .feature-field input, .feature-field select {
+      min-height: 42px;
+      border-color: #dce4ef;
+      border-radius: 10px;
+      color: #20334e;
+      font-size: 12px;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+    .transfer-field input:focus, .transfer-field select:focus,
+    .feature-field input:focus, .feature-field select:focus {
+      border-color: #6e9bd3;
+      outline: 0;
+      box-shadow: 0 0 0 3px #3478d41c;
+    }
+    .transfer-submit, .transfer-confirm, .feature-button, .balance-button {
+      min-height: 40px;
+      border-radius: 10px;
+      background: #245eb0;
+      font-size: 11px;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .transfer-submit:hover, .transfer-confirm:hover, .feature-button:hover, .balance-button:hover {
+      background: #194b91;
+      box-shadow: 0 5px 14px #245eb02e;
+    }
+    .transfer-cancel, .feature-button.secondary {
+      min-height: 38px;
+      border-color: #dce4ef;
+      border-radius: 10px;
+      background: #fff;
+      color: #405570;
+    }
+    .transfer-review { border-color: #dce6f3; border-radius: 12px; background: #f8fafd; }
+    .transfer-review h3 { color: #193d70; }
+    .transfer-status, .feature-status { font-size: 10px; }
+    .card-sample {
+      min-height: 150px;
+      padding: 17px;
+      border: 1px solid #ffffff24;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 85% 18%, #ffffff28 0 2px, transparent 3px),
+        linear-gradient(128deg, #153a72, #2264b4 58%, #3c80c9);
+      box-shadow: 0 10px 22px #173d7624, inset 0 1px #ffffff33;
+    }
+    .card-sample-number { font-variant-numeric: tabular-nums; letter-spacing: 2px; }
+    .card-switch {
+      min-height: 35px;
+      padding-inline: 11px;
+      border-color: #dce4ef;
+      border-radius: 9px;
+      background: #fff;
+    }
+    .statement-table { font-size: 11px; }
+    .statement-table th, .statement-table td { padding: 10px 7px; border-color: #e9eef5; }
+    .statement-table th { color: #6b7a91; font-size: 9px; letter-spacing: .05em; }
+    .goal-meter { height: 8px; background: #e9eef6; }
+    .goal-meter span { background: linear-gradient(90deg, #2b70c6, #42a27b); }
+    .service-dialog { border-color: #d7e1ee; border-radius: 19px; }
+    .dialog-header { padding: 17px 20px; }
+    .dialog-header h2 { color: #18365f; font-size: 16px; }
+    .dialog-content { padding: 18px; }
+    footer { border-top-color: #e2e9f2; background: #fff; }
+    .footer-inner { padding: 31px 0 18px; }
+    .footer-grid { gap: 28px; }
+    .footer-grid h2 { color: #1c3b67; font-size: 12px; }
+    .footer-grid p, .footer-grid a { color: #687890; font-size: 11px; }
+    .footer-bottom { color: #718097; font-size: 10px; }
+    .footer-real-note { color: #80611f; font-size: 10px; }
+    @media (max-width: 760px) {
+      .header-inner, main, .footer-inner { width: calc(100% - 40px); }
+      main { padding: 28px 0 38px; }
+      .dashboard-grid { gap: 14px; }
+      .workspace, .personal-card, .transfer-card, .feature-card { padding: 18px; }
+    }
+    @media (max-width: 520px) {
+      .page-canvas { min-height: 100vh; }
+      .header-inner, main, .footer-inner { width: calc(100% - 28px); }
+    }
+    .welcome-toast {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      width: min(560px, calc(100% - 32px));
+      max-width: 560px;
+      max-height: min(90vh, 760px);
+      margin: auto;
+      overflow: auto;
+      grid-template-columns: 46px minmax(0, 1fr) 34px;
+      align-items: start;
+      gap: 14px;
+      padding: 26px;
+      border: 1px solid #dce6f4;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 28px 90px #061b3a55, inset 0 1px #fff;
+      animation: welcome-arrive .35s ease both;
+    }
+    .welcome-toast:not([open]) { display: none; }
+    .welcome-toast[open] { display: grid; }
+    .welcome-toast::backdrop { background: #0b1d35b8; backdrop-filter: blur(7px); }
+    .welcome-toast-icon { display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid #dcebe4; border-radius: 15px; background: linear-gradient(145deg, #f0faf4, #e4f3e9); color: #16845f; box-shadow: inset 0 1px #fff; }
+    .welcome-toast-content { min-width: 0; }
+    .welcome-toast h2 { margin: 2px 0 7px; color: #173d76; font-size: 20px; letter-spacing: -.35px; }
+    .welcome-toast p { margin: 0; color: #596981; font-size: 12px; line-height: 1.65; }
+    .welcome-toast .toast-safety { margin-top: 5px; color: #8b6726; font-weight: 700; }
+    .toast-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
+    .toast-notify, .toast-continue {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: 0;
+      border-radius: 10px;
+      background: #245eb0;
+      color: #fff;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 750;
+      transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+    .toast-notify:hover, .toast-continue:hover { transform: translateY(-1px); background: #194b91; box-shadow: 0 6px 16px #173d762e; }
+    .toast-continue { background: #173d76; }
+    .toast-status { flex-basis: 100%; min-height: 13px; color: #748197; font-size: 9px !important; }
+    .toast-dismiss { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid #e5ebf3; border-radius: 10px; background: #fff; color: #61728a; }
+    .toast-dismiss:hover { background: #f4f7fc; color: #173d76; }
+    @keyframes welcome-arrive { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @media (max-width: 520px) {
+      .page-canvas { min-height: 100vh; }
+      .header-inner, main { width: calc(100% - 28px); }
+      .header-inner { min-height: 66px; flex-wrap: wrap; padding: 12px 0; }
+      .header-nav.header-inner { min-height: 44px; padding-top: 0; }
+      .header-tools { gap: 8px; }
+      .brand { gap: 9px; font-size: 25px; }
+      .brand-mark { width: 43px; height: 43px; border-radius: 13px; font-size: 21px; }
+      .brand-real { font-size: 8px; }
+      .local-time { font-size: 9px; }
+      .local-time strong { font-size: 10px; }
+      main { padding: 30px 0; }
+      .workspace { min-height: 230px; padding: 18px; }
+      .personal-card { padding: 16px; }
+      .field-grid { grid-template-columns: 1fr; }
+      .reward-panel { grid-template-columns: 1fr; }
+      .environment { font-size: 9px; }
+      .footer-inner { width: calc(100% - 28px); }
+      .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+      .footer-bottom { flex-direction: column; }
+      .workspace, .personal-card, .transfer-card, .feature-card, .service-launcher { grid-column: 1 / -1; }
+      .launcher-actions { grid-template-columns: 1fr; }
+      .welcome-toast { width: calc(100% - 24px); padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+    @media (min-width: 521px) and (max-width: 1000px) {
+      .workspace, .personal-card, .transfer-card, .feature-card { grid-column: span 6; }
+      .service-launcher { grid-column: 1 / -1; }
+    }
+    @media (max-width: 760px) and (min-width: 521px) {
+      .header-inner, main, .footer-inner { width: calc(100% - 40px); }
+      .workspace, .personal-card, .transfer-card, .feature-card { grid-column: 1 / -1; }
+    }
+    @media (max-width: 520px) {
+      .page-canvas { min-height: 100vh; }
+      .welcome-toast { width: calc(100% - 24px); margin: auto; padding: 18px; }
+    }
+    .header {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #0d2a56;
+      background:
+        radial-gradient(ellipse at 83% -20%, #8cbaff38 0, transparent 34%),
+        linear-gradient(118deg, #102f60 0%, #164887 50%, #246bc2 100%);
+      box-shadow: 0 15px 34px #122f552e, inset 0 1px #ffffff30;
+    }
+    .header::before {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 30%, #ffffff08 56%, transparent 78%);
+      content: "";
+      pointer-events: none;
+    }
+    .header-inner { position: relative; min-height: 120px; }
+    .header-nav.header-inner { min-height: 58px; }
+    .brand-mark {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      box-shadow: 0 9px 22px #061b3a35, inset 0 1px #ffffff4a, inset 0 -8px 16px #071b3a25;
+    }
+    .brand-mark img { width: 100%; height: 100%; border-radius: inherit; object-fit: contain; }
+    .brand { text-shadow: 0 2px 9px #041a3b45; }
+    .environment { box-shadow: inset 0 1px #ffffff32, 0 4px 12px #071b3a22; }
+    .header-nav { padding-bottom: 14px; }
+    .header-nav a { box-shadow: inset 0 1px #ffffff10; }
+    .feature-card, .personal-card, .transfer-card, .workspace {
+      box-shadow: 0 12px 28px #17345112, 0 3px 8px #17345108, inset 0 1px #fff;
+    }
+    .feature-card:hover, .personal-card:hover, .workspace:hover {
+      box-shadow: 0 20px 42px #1734511b, 0 5px 12px #1734510b, inset 0 1px #fff;
+    }
+    .launcher-button { box-shadow: 0 3px 9px #17345108, inset 0 1px #fff; }
+    .icon-tile, .launcher-icon { box-shadow: 0 4px 9px #1734510a, inset 0 1px #fff; }
+    footer {
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid #102b52;
+      background:
+        radial-gradient(ellipse at 86% 0%, #2e66a233 0, transparent 32rem),
+        linear-gradient(138deg, #102746 0%, #15365f 52%, #102744 100%);
+      box-shadow: 0 -12px 32px #17345114, inset 0 1px #ffffff19;
+      color: #fff;
+    }
+    footer::before {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #8bb8ed88, transparent);
+      content: "";
+    }
+    .footer-inner { position: relative; padding: 44px 0 22px; }
+    .footer-grid { gap: 34px; }
+    .footer-grid h2 { color: #f3f7ff; font-size: 13px; }
+    .footer-grid h2 .icon { color: #91b9ec; }
+    .footer-grid p, .footer-grid a { color: #c0cee0; font-size: 11px; line-height: 1.9; }
+    .footer-grid a .icon { color: #91b9ec; }
+    .footer-grid a:hover { color: #fff; }
+    .footer-real-note {
+      margin-top: 26px;
+      padding: 13px 15px;
+      border: 1px solid #ffffff20;
+      border-radius: 11px;
+      background: #ffffff0a;
+      color: #e6c986;
+      font-size: 10px;
+    }
+    .footer-bottom {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-color: #ffffff24;
+      color: #b8c8dc;
+      font-size: 10px;
+    }
+    .welcome-toast {
+      width: min(560px, calc(100% - 32px));
+      margin: auto;
+      border-color: #d6e1ee;
+      border-radius: 22px;
+      box-shadow: 0 30px 100px #061b3a6b, inset 0 1px #fff;
+    }
+    .welcome-toast[open] { display: grid; }
+    .welcome-toast::backdrop { background: #091a31c4; backdrop-filter: blur(8px); }
+    @media (max-width: 760px) {
+      .header-inner { min-height: 102px; }
+      .footer-inner { padding: 34px 0 20px; }
+    }
+    @media (max-width: 520px) {
+      .header-inner { min-height: 76px; }
+      .brand-mark { width: 46px; height: 46px; }
+      .header-nav.header-inner { min-height: 48px; }
+      .footer-grid { gap: 20px 14px; }
+      .welcome-toast { width: calc(100% - 24px); padding: 17px; }
+    }
+    .dashboard-grid { align-items: stretch; }
+    .personal-card, .feature-card, .transfer-card {
+      border-color: #d8e4f3;
+      background: linear-gradient(150deg, #fff 0%, #f5f8fe 100%);
+    }
+    .personal-card, .feature-card, .transfer-card { position: relative; overflow: hidden; border-top-color: #b8d0ee; }
+    .personal-card::before, .feature-card::before, .transfer-card::before {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, #1e5ba8, #71a9e7 48%, #d6e7fa);
+      content: "";
+    }
+    .feature-card:nth-of-type(odd) { background: linear-gradient(150deg, #fff 0%, #f1f6fd 100%); }
+    .icon-tile, .launcher-icon {
+      border-color: #d7e4f5;
+      background: linear-gradient(145deg, #f1f6ff, #e6effc);
+      color: #1e5ba8;
+    }
+    .budget-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 8px 0 14px;
+      padding: 13px;
+      border: 1px solid #dbe7f6;
+      border-radius: 11px;
+      background: linear-gradient(130deg, #edf4ff, #f8faff);
+    }
+    .budget-summary span { color: #60738e; font-size: 10px; font-weight: 700; }
+    .budget-summary strong { color: #194b87; font-size: 15px; font-variant-numeric: tabular-nums; }
+    .budget-meter { margin: 12px 0 7px; }
+    .budget-meter span { width: 36.8%; background: linear-gradient(90deg, #3279cc, #4e9de0); }
+    .dashboard-grid > section:not([hidden]) {
+      animation: card-arrive .42s cubic-bezier(.2,.7,.25,1) both;
+    }
+    .dashboard-grid > section:nth-child(2) { animation-delay: 45ms; }
+    .dashboard-grid > section:nth-child(3) { animation-delay: 90ms; }
+    .dashboard-grid > section:nth-child(4) { animation-delay: 135ms; }
+    .dashboard-grid > section:nth-child(5) { animation-delay: 180ms; }
+    .dashboard-grid > section:nth-child(6) { animation-delay: 225ms; }
+    .dashboard-grid > section:nth-child(7) { animation-delay: 270ms; }
+    .dashboard-grid > section:nth-child(8) { animation-delay: 315ms; }
+    .dashboard-grid > section:nth-child(9) { animation-delay: 360ms; }
+    .dashboard-grid > section:nth-child(10) { animation-delay: 405ms; }
+    @keyframes card-arrive {
+      from { opacity: 0; transform: translateY(9px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 761px) and (max-width: 1100px) {
+      .workspace, .personal-card, .transfer-card, .feature-card { grid-column: span 6; }
+      .service-launcher { grid-column: 1 / -1; }
+      .launcher-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .workspace, .personal-card, .transfer-card, .feature-card, .service-launcher { grid-column: 1 / -1; }
+      .dashboard-grid { gap: 13px; }
+      .launcher-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .launcher-actions { grid-template-columns: 1fr; }
+      .dashboard-grid > section:not([hidden]) { animation-delay: 0ms; }
+      .welcome-toast { grid-template-columns: 38px minmax(0, 1fr) 30px; gap: 10px; padding: 16px; }
+      .welcome-toast-icon { width: 38px; height: 38px; }
+      .welcome-toast h2 { font-size: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dashboard-grid > section:not([hidden]) { animation: none; }
+    }
+    .dashboard-grid > .personal-card,
+    .dashboard-grid > .feature-card,
+    .dashboard-grid > .transfer-card {
+      border-color: #5f91ca;
+      background: linear-gradient(148deg, #17427f 0%, #205cac 55%, #2872cb 100%);
+      background-size: 150% 150%;
+      color: #fff;
+      box-shadow: 0 15px 32px #17427f28, inset 0 1px #ffffff32;
+      transition: transform .28s cubic-bezier(.2,.7,.25,1), box-shadow .28s ease, background-position .6s ease, border-color .28s ease;
+    }
+    .dashboard-grid > .feature-card:nth-of-type(odd) {
+      background: linear-gradient(148deg, #17427f 0%, #205cac 55%, #2872cb 100%);
+      background-size: 150% 150%;
+    }
+    .dashboard-grid > .personal-card:hover,
+    .dashboard-grid > .feature-card:hover,
+    .dashboard-grid > .transfer-card:hover {
+      transform: translateY(-4px);
+      border-color: #8bb8ed;
+      background-position: 100% 0;
+      box-shadow: 0 22px 42px #17427f38, inset 0 1px #ffffff38;
+    }
+    .personal-card::before, .feature-card::before, .transfer-card::before {
+      height: 3px;
+      background: linear-gradient(90deg, #ffffff20, #bfe1ffbd 50%, #ffffff20);
+      background-size: 200% 100%;
+      animation: blue-card-sheen 5s ease-in-out infinite;
+    }
+    .personal-card h2, .feature-card h2, .transfer-card h2,
+    .personal-intro, .feature-copy, .transfer-note,
+    .transfer-field label, .feature-field label,
+    .profile-field strong, .profile-field span,
+    .reward-item span, .reward-safety, .card-switch-row,
+    .feature-status, .transfer-status, .budget-summary span,
+    .budget-summary strong, .goal-meter + .feature-copy {
+      color: #fff;
+    }
+    .personal-intro, .feature-copy, .transfer-note,
+    .profile-field span, .reward-item span, .card-switch-row,
+    .goal-meter + .feature-copy { color: #d5e5f8; }
+    .profile-field, .statement-table th, .statement-table td {
+      border-color: #ffffff2c;
+    }
+    .reward-item, .budget-summary, .transfer-review {
+      border-color: #ffffff35;
+      background: #0e326d3b;
+      box-shadow: inset 0 1px #ffffff12;
+    }
+    .reward-item strong { color: #fff; font-size: 17px; }
+    .reward-safety { color: #ffe5a8; font-size: 11px; }
+    .budget-summary strong, .transfer-review h3 { color: #fff; }
+    .icon-tile, .launcher-icon {
+      border-color: #ffffff32;
+      background: #ffffff17;
+      color: #fff;
+      box-shadow: inset 0 1px #ffffff20, 0 6px 15px #0c2d5b20;
+    }
+    .launcher-button .launcher-icon {
+      border: 1px solid #d2e2f8;
+      background: #edf4ff;
+      color: #174f9e;
+      box-shadow: inset 0 1px #fff, 0 3px 8px #17345116;
+    }
+    .details-toggle {
+      border-color: #ffffff44;
+      background: #ffffff15;
+      color: #fff;
+    }
+    .details-toggle:hover { background: #ffffff24; }
+    .feature-field input, .feature-field select,
+    .transfer-field input, .transfer-field select {
+      border-color: #d4e2f3;
+      background: #fff;
+      color: #20334e;
+    }
+    .feature-button.secondary, .transfer-cancel, .card-switch {
+      border-color: #ffffff75;
+      background: #ffffffed;
+      color: #17427f;
+    }
+    .launcher-button {
+      border-color: #ffffff45;
+      background: #ffffffed;
+      box-shadow: 0 5px 14px #0d326422, inset 0 1px #fff;
+    }
+    .launcher-button:hover {
+      border-color: #d9eaff;
+      background: #fff;
+      box-shadow: 0 10px 22px #0d32643b;
+    }
+    .launcher-copy { color: #194b87; }
+    .launcher-copy small { color: #63758e; }
+    .statement-table th { color: #d5e5f8; }
+    .statement-table td { color: #fff; }
+    .transfer-review p { color: #d5e5f8; }
+    .goal-meter { background: #ffffff40; }
+    .goal-meter span { background: linear-gradient(90deg, #c9e5ff, #fff); }
+    .budget-meter span { background: linear-gradient(90deg, #fff, #9dcbff); }
+    .card-sample { box-shadow: 0 10px 22px #0b2c5d44, inset 0 1px #ffffff3d; }
+    .feature-status, .transfer-status { color: #c9f4df; }
+    .service-dialog [data-feature-panel] {
+      position: relative;
+      transform: none;
+      border: 1px solid #dce5f1;
+      border-radius: 14px;
+      background: #fff;
+      background-image: none;
+      color: #20334e;
+      box-shadow: 0 8px 24px #18365b12;
+    }
+    .service-dialog [data-feature-panel]::before { display: none; }
+    .service-dialog [data-feature-panel] h2 { color: #18365f; }
+    .service-dialog [data-feature-panel] .transfer-note,
+    .service-dialog [data-feature-panel] .feature-copy,
+    .service-dialog [data-feature-panel] .grow-panel-note { color: #596981; }
+    .service-dialog [data-feature-panel] .transfer-field label,
+    .service-dialog [data-feature-panel] .feature-field label { color: #465b77; }
+    .service-dialog [data-feature-panel] .icon-tile {
+      border-color: #d7e4f5;
+      background: #f1f6ff;
+      color: #1e5ba8;
+      box-shadow: none;
+    }
+    .service-dialog [data-feature-panel] .transfer-review {
+      border-color: #dce6f3;
+      background: #f8fafd;
+      box-shadow: none;
+    }
+    .service-dialog [data-feature-panel] .transfer-review h3 { color: #193d70; }
+    .service-dialog [data-feature-panel] .transfer-review p { color: #596981; }
+    .service-dialog [data-feature-panel] .feature-status,
+    .service-dialog [data-feature-panel] .transfer-status { color: #16734f; }
+    @keyframes blue-card-sheen {
+      0%, 100% { background-position: 0% 50%; opacity: .65; }
+      50% { background-position: 100% 50%; opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .personal-card::before, .feature-card::before, .transfer-card::before { animation: none; }
+      .personal-card, .feature-card, .transfer-card { transition: none; }
+    }
+    .header {
+      isolation: isolate;
+      border-bottom: 1px solid #0b2852;
+      background:
+        radial-gradient(ellipse at 86% 0%, #72a9ee35 0, transparent 36rem),
+        linear-gradient(112deg, #0c2b59 0%, #143d75 44%, #1d5baa 100%);
+      box-shadow: 0 18px 42px #102f582e, inset 0 1px #ffffff38;
+    }
+    .header::before {
+      z-index: -1;
+      background:
+        linear-gradient(112deg, transparent 18%, #ffffff0c 48%, transparent 72%),
+        radial-gradient(ellipse at 15% 100%, #4f8dd31a, transparent 48%);
+      animation: header-glint 12s ease-in-out infinite alternate;
+    }
+    .header-inner:not(.header-nav) {
+      min-height: 128px;
+      padding: 21px 0 16px;
+    }
+    .brand { gap: 16px; font-size: clamp(27px, 3vw, 34px); }
+    .brand-mark {
+      width: 64px;
+      height: 64px;
+      border-color: #ffffff65;
+      border-radius: 19px;
+      background: linear-gradient(145deg, #ffffff32, #ffffff0c);
+      box-shadow: 0 10px 25px #061a3a45, inset 0 1px #ffffff70, inset 0 -9px 17px #071b3a22;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .brand:hover .brand-mark { transform: translateY(-2px); box-shadow: 0 13px 27px #061a3a55, inset 0 1px #ffffff75, inset 0 -9px 17px #071b3a22; }
+    .brand-real {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 7px;
+      border: 1px solid #ffffff30;
+      border-radius: 5px;
+      background: #ffffff12;
+      color: #dceaff;
+      font-size: 8px;
+      letter-spacing: 1.35px;
+    }
+    .header-tools { gap: 15px; }
+    .flag {
+      width: 34px;
+      height: 23px;
+      border-color: #ffffff92;
+      border-radius: 4px;
+      box-shadow: 0 4px 10px #051b3a42;
+    }
+    .local-time {
+      min-width: 196px;
+      gap: 4px;
+      padding: 8px 12px;
+      border: 1px solid #ffffff23;
+      border-radius: 10px;
+      background: #09295835;
+      box-shadow: inset 0 1px #ffffff10;
+    }
+    .local-time span { color: #d2e4fb; font-size: 10px; }
+    .local-time strong { font-size: 12px; letter-spacing: .015em; }
+    .environment {
+      padding: 8px 11px;
+      border-color: #d2e7ff65;
+      background: linear-gradient(145deg, #ffffff26, #ffffff0e);
+      box-shadow: 0 5px 14px #071b3a20, inset 0 1px #ffffff2b;
+      letter-spacing: .07em;
+    }
+    .header-nav.header-inner {
+      min-height: 62px;
+      padding: 0 0 13px;
+      gap: 8px;
+      border-top: 1px solid #ffffff1a;
+    }
+    .header-nav a {
+      min-height: 37px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      color: #deebfc;
+      font-size: 11px;
+      font-weight: 700;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
+    }
+    .header-nav a:hover {
+      transform: translateY(-1px);
+      border-color: #ffffff24;
+      background: #ffffff18;
+      color: #fff;
+    }
+    .header-nav a[href="#workspace"] {
+      border-color: #ffffff2d;
+      background: linear-gradient(145deg, #ffffff20, #ffffff0c);
+      box-shadow: inset 0 1px #ffffff22, 0 3px 9px #061a3a1a;
+      color: #fff;
+    }
+    @keyframes header-glint {
+      from { opacity: .65; background-position: 0% 0%; }
+      to { opacity: 1; background-position: 100% 100%; }
+    }
+    @media (max-width: 760px) {
+      .header-inner:not(.header-nav) { min-height: 104px; padding: 16px 0 12px; }
+      .header-tools { gap: 9px; }
+      .local-time { min-width: 0; padding: 7px 9px; }
+      .header-nav.header-inner { min-height: 56px; padding-bottom: 10px; }
+    }
+    @media (max-width: 520px) {
+      .header-inner:not(.header-nav) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        justify-content: start;
+        gap: 12px;
+        padding: 14px 0 12px;
+      }
+      .brand { gap: 10px; font-size: 25px; }
+      .brand-mark { width: 48px; height: 48px; border-radius: 14px; }
+      .header-tools { display: flex; flex-wrap: wrap; justify-content: flex-start; }
+      .local-time { flex: 1 1 175px; }
+      .header-nav.header-inner { min-height: 52px; gap: 4px; }
+      .header-nav a { min-height: 34px; gap: 6px; padding: 7px 9px; font-size: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .header::before { animation: none; }
+      .brand-mark, .header-nav a { transition: none; }
+    }
+    .grow-club { margin-top: 52px; }
+    .grow-heading { margin: 0 0 22px; color: #102b55; font-size: clamp(27px, 4vw, 36px); letter-spacing: -.9px; }
+    .grow-layout { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+    .grow-feature {
+      position: relative;
+      display: flex;
+      min-height: 460px;
+      grid-column: span 4;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid #d8e4f6;
+      border-radius: 16px;
+      background: linear-gradient(150deg, #e9f1ff 0%, #f4f7fc 65%, #fff 100%);
+      box-shadow: 0 14px 34px #173d7612;
+    }
+    .grow-label { width: fit-content; padding: 7px 12px; border-radius: 20px; background: #3478d4; color: #fff; font-size: 12px; font-weight: 750; }
+    .grow-feature h3 { max-width: 440px; margin: 18px 0; color: #102b55; font-size: clamp(22px, 2.2vw, 31px); line-height: 1.16; letter-spacing: -.6px; }
+    .grow-feature p { max-width: 390px; margin: 0; color: #61738d; font-size: 13px; line-height: 1.65; }
+    .grow-start {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 46px;
+      align-items: center;
+      gap: 9px;
+      margin-top: 22px;
+      padding: 11px 17px;
+      border: 0;
+      border-radius: 9px;
+      background: #2864d7;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 750;
+      box-shadow: 0 7px 16px #2864d72b;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .grow-start:hover { transform: translateY(-2px); background: #1e52b7; box-shadow: 0 10px 20px #2864d738; }
+    .grow-art { display: grid; min-height: 150px; flex: 1; align-items: end; justify-items: center; margin: 20px -12px -30px; padding: 20px 12px 24px; background: linear-gradient(180deg, transparent, #d9e7fb); color: #2864d7; }
+    .grow-art svg { width: min(100%, 270px); height: 150px; overflow: visible; }
+    .grow-tiles { display: grid; grid-column: span 8; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .grow-tile {
+      display: flex;
+      min-width: 0;
+      min-height: 220px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 30px;
+      border: 1px solid #dfe4eb;
+      border-radius: 14px;
+      background: #fff;
+      color: #102b55;
+      text-align: left;
+      box-shadow: 0 8px 24px #19365908;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .grow-tile:hover { transform: translateY(-4px); border-color: #a9c5ed; box-shadow: 0 16px 30px #19365914; }
+    .grow-tile .icon { width: 38px; height: 38px; color: #1769e8; stroke-width: 1.8; }
+    .grow-tile strong { font-size: clamp(14px, 1.5vw, 19px); line-height: 1.3; }
+    .grow-panel-note { margin: 0; color: #748197; font-size: 12px; line-height: 1.65; }
+    .atm-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+    .atm-card { padding: 14px; border: 1px solid #dce6f4; border-radius: 12px; background: #fff; }
+    .atm-card h3 { margin: 0 0 6px; color: #18365f; font-size: 12px; }
+    .atm-card p { margin: 0; color: #66768d; font-size: 11px; line-height: 1.6; }
+    .grow-calculator { display: grid; gap: 14px; }
+    .grow-calculator label { display: grid; gap: 6px; color: #596981; font-size: 11px; font-weight: 700; }
+    .grow-calculator input { width: 100%; min-height: 42px; padding: 9px 11px; border: 1px solid #dce4ef; border-radius: 8px; background: #fff; color: #1d2b42; font: inherit; font-size: 13px; }
+    .grow-result { min-height: 48px; margin: 0; padding: 12px; border-radius: 9px; background: #edf4ff; color: #214a84; font-size: 12px; line-height: 1.6; }
+    @media (max-width: 1000px) {
+      .grow-feature { grid-column: span 5; padding: 24px; }
+      .grow-tiles { grid-column: span 7; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .grow-tile { min-height: 190px; padding: 22px; }
+    }
+    @media (max-width: 760px) {
+      .grow-club { margin-top: 38px; }
+      .grow-feature, .grow-tiles { grid-column: 1 / -1; }
+      .grow-feature { min-height: 390px; }
+      .grow-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .grow-layout, .grow-tiles { gap: 12px; }
+      .grow-feature { min-height: 380px; padding: 22px; }
+      .grow-tile { min-height: 150px; padding: 17px; }
+      .grow-tile .icon { width: 31px; height: 31px; }
+      .atm-list { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .grow-start, .grow-tile { transition: none; }
+    }
+    .header { overflow: visible; border: 0; background: #05294f; box-shadow: none; }
+    .header::before { display: none; }
+    .utility-bar { min-height: 42px; background: #fff; color: #19283b; }
+    .utility-inner { display: flex; width: min(calc(100% - 64px), 1440px); min-height: 42px; align-items: center; justify-content: space-between; gap: 18px; margin: 0 auto; }
+    .utility-caption { color: #526174; font-size: 10px; font-weight: 700; letter-spacing: .02em; }
+    .utility-inner .local-time { display: flex; min-width: 0; align-items: center; gap: 7px; padding: 0; border: 0; background: transparent; box-shadow: none; color: #526174; font-size: 10px; text-align: left; }
+    .utility-inner .local-time strong { color: #19283b; font-size: 10px; }
+    .utility-links { display: flex; align-items: center; gap: clamp(12px, 2.5vw, 34px); }
+    .utility-links a, .utility-language { color: #19283b; font-size: 10px; font-weight: 650; text-decoration: none; white-space: nowrap; }
+    .utility-links a:hover { color: #1769e8; text-decoration: underline; text-underline-offset: 3px; }
+    .utility-language { display: inline-flex; align-items: center; gap: 8px; }
+    .utility-language .flag { width: 21px; height: 14px; border-color: #d5dbe4; border-radius: 50%; box-shadow: none; }
+    .banking-bar { background: #05294f; }
+    .banking-inner { display: flex; width: min(calc(100% - 64px), 1440px); min-height: 86px; align-items: center; justify-content: space-between; gap: 28px; margin: 0 auto; }
+    .banking-inner .brand { flex: 0 0 auto; gap: 12px; font-size: 25px; letter-spacing: -.7px; }
+    .banking-inner .brand-mark { width: 44px; height: 44px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+    .banking-inner .brand:hover .brand-mark { transform: none; box-shadow: none; }
+    .banking-inner .brand-fallback { width: 35px; height: 35px; }
+    .banking-inner .brand-real { padding: 3px 6px; font-size: 7px; letter-spacing: 1px; }
+    .banking-inner .header-tools { display: none; }
+    .banking-inner .header-nav { width: auto; min-height: 0; justify-content: flex-end; gap: clamp(10px, 2.2vw, 34px); overflow: visible; padding: 0; border: 0; }
+    .banking-inner .header-nav a, .nav-menu summary {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 0;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      background: transparent;
+      color: #f4f8ff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .banking-inner .header-nav a:hover, .nav-menu summary:hover { transform: none; border-color: #fff; background: transparent; }
+    .banking-inner .header-nav a[href="#workspace"] { border-color: #fff; background: transparent; box-shadow: none; }
+    .nav-menu { position: relative; }
+    .nav-menu summary { list-style: none; cursor: pointer; }
+    .nav-menu summary::-webkit-details-marker { display: none; }
+    .nav-menu summary::after { width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; content: ""; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
+    .nav-menu[open] summary::after { transform: rotate(225deg) translate(-2px, -1px); }
+    .nav-dropdown { position: absolute; z-index: 5; top: calc(100% + 3px); left: -16px; display: grid; min-width: 210px; gap: 4px; padding: 10px; border: 1px solid #dbe5f2; border-radius: 10px; background: #fff; box-shadow: 0 16px 34px #031b3d30; }
+    .nav-dropdown a { min-height: 38px !important; padding: 9px 10px !important; border: 0 !important; border-radius: 6px !important; color: #1e385b !important; font-size: 12px !important; }
+    .nav-dropdown a:hover { background: #eef4ff !important; color: #174f9e !important; }
+    .header-actions { display: flex; align-items: center; gap: 22px; }
+    .header-action { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: 8px; padding: 6px; border: 0; background: transparent; color: #f5f8fd; font: inherit; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .header-action:hover { color: #b8d8ff; }
+    .header-action .icon { width: 21px; height: 21px; }
+    .header-search { display: flex; width: min(calc(100% - 64px), 1440px); align-items: center; gap: 10px; margin: 0 auto; padding: 0 0 14px; }
+    .header-search[hidden] { display: none; }
+    .header-search input { width: min(420px, 100%); min-height: 40px; padding: 8px 12px; border: 1px solid #ffffff62; border-radius: 7px; background: #fff; color: #102b55; font: inherit; font-size: 13px; }
+    .header-search button { min-height: 40px; padding: 8px 14px; border: 1px solid #ffffff70; border-radius: 7px; background: #ffffff17; color: #fff; font: inherit; font-size: 12px; font-weight: 700; }
+    .header-search-status { margin: 0; color: #e1edfc; font-size: 11px; }
+    .hero-banner { position: relative; display: grid; min-height: clamp(420px, 41vw, 610px); grid-template-columns: 1fr 1fr; overflow: hidden; background: linear-gradient(105deg, #536a83 0%, #718398 43%, #d0d9e1 100%); }
+    .hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 54px max(32px, calc((100vw - 1440px) / 2)); padding-right: 24px; color: #fff; }
+    .hero-eyebrow { margin: 0 0 18px; color: #dceaff; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .hero-copy h1 { max-width: 650px; margin: 0; font-size: clamp(42px, 6vw, 82px); line-height: .99; letter-spacing: -.045em; text-wrap: balance; }
+    .hero-copy p { max-width: 450px; margin: 22px 0 0; color: #f1f6ff; font-size: clamp(15px, 1.5vw, 20px); line-height: 1.55; }
+    .hero-cta { display: inline-flex; min-height: 48px; align-items: center; gap: 10px; margin-top: 30px; padding: 12px 22px; border-radius: 7px; background: #0866e8; color: #fff; font-size: 14px; font-weight: 750; text-decoration: none; box-shadow: 0 8px 18px #05275035; transition: background .2s ease, transform .2s ease; }
+    .hero-cta:hover { transform: translateY(-2px); background: #0053c7; }
+    .hero-visual { position: relative; display: grid; min-width: 0; align-items: center; justify-items: center; overflow: hidden; background: radial-gradient(ellipse at 48% 68%, #f4f8ff 0%, #dbe5ef 43%, #aebdcc 100%); }
+    .hero-visual::before, .hero-visual::after { position: absolute; border: 1px solid #fff8; border-radius: 50%; content: ""; }
+    .hero-visual::before { width: min(38vw, 520px); aspect-ratio: 1; background: #ffffff25; }
+    .hero-visual::after { width: min(29vw, 390px); aspect-ratio: 1; background: #c7d8ed55; }
+    .hero-visual svg { position: relative; z-index: 1; width: min(90%, 570px); height: auto; filter: drop-shadow(0 22px 26px #17395b30); animation: hero-float 6s ease-in-out infinite; }
+    @keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    .login-info-dialog { width: min(430px, calc(100% - 32px)); padding: 26px; border: 1px solid #dce5f1; border-radius: 16px; color: #1d2b42; box-shadow: 0 24px 80px #0e24444d; }
+    .login-info-dialog::backdrop { background: #10223a99; backdrop-filter: blur(3px); }
+    .login-info-dialog h2 { margin: 0; color: #102b55; font-size: 20px; }
+    .login-info-dialog p { margin: 12px 0 20px; color: #61738d; font-size: 13px; line-height: 1.65; }
+    .login-info-dialog button { min-height: 40px; padding: 9px 16px; border: 0; border-radius: 8px; background: #2864d7; color: #fff; font: inherit; font-size: 12px; font-weight: 750; }
+    @media (max-width: 900px) {
+      .banking-inner { width: calc(100% - 40px); min-height: 76px; gap: 16px; }
+      .banking-inner .brand { font-size: 21px; }
+      .banking-inner .header-nav { gap: 14px; }
+      .banking-inner .header-nav a, .nav-menu summary { font-size: 11px; }
+      .header-actions { gap: 12px; }
+      .utility-inner, .header-search { width: calc(100% - 40px); }
+    }
+    @media (max-width: 680px) {
+      .utility-inner { min-height: 36px; }
+      .utility-caption { font-size: 9px; }
+      .utility-links { gap: 12px; }
+      .utility-links a { display: none; }
+      .utility-links a:last-of-type { display: inline; }
+      .banking-inner { min-height: 74px; flex-wrap: wrap; padding: 12px 0; }
+      .banking-inner .brand { font-size: 20px; }
+      .banking-inner .brand-mark { width: 38px; height: 38px; }
+      .banking-inner .brand-fallback { width: 31px; height: 31px; }
+      .banking-inner .header-nav { order: 3; width: 100%; justify-content: flex-start; gap: 20px; overflow-x: auto; }
+      .banking-inner .header-nav a, .nav-menu summary { min-height: 36px; font-size: 11px; }
+      .header-actions { gap: 8px; }
+      .header-action { min-height: 36px; font-size: 11px; }
+      .header-action .icon { width: 19px; height: 19px; }
+      .header-search { flex-wrap: wrap; }
+      .hero-banner { min-height: 590px; grid-template-columns: 1fr; grid-template-rows: 1fr .82fr; }
+      .hero-copy { justify-content: flex-end; padding: 42px 24px 28px; }
+      .hero-copy h1 { max-width: 540px; font-size: clamp(42px, 12vw, 65px); }
+      .hero-copy p { max-width: 430px; margin-top: 15px; font-size: 15px; }
+      .hero-cta { margin-top: 20px; }
+      .hero-visual { min-height: 220px; }
+      .hero-visual::before { width: min(60vw, 330px); }
+      .hero-visual::after { width: min(47vw, 260px); }
+      .hero-visual svg { width: min(76%, 350px); max-height: 240px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-visual svg, .hero-cta, .nav-menu summary::after { animation: none; transition: none; }
+    }
+    footer { position: relative; border: 0; background: #05294f; color: #fff; }
+    .footer-inner { width: min(calc(100% - 64px), 1440px); padding: 42px 0 0; }
+    .footer-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(18px, 4vw, 64px); padding-bottom: 34px; }
+    .footer-grid h2 { margin-bottom: 18px; color: #fff; font-size: 15px; font-weight: 750; }
+    .footer-grid h2 .icon { display: none; }
+    .footer-grid p, .footer-grid a { color: #e0e9f4; font-size: 13px; line-height: 1.55; }
+    .footer-grid a { display: block; width: fit-content; margin: 3px 0; text-underline-offset: 3px; }
+    .footer-grid a .icon { display: none; }
+    .footer-grid a:hover { color: #fff; text-decoration: underline; }
+    .footer-real-note { margin: 0; padding: 18px 0 0; border-top: 1px solid #ffffff25; color: #b8c9dc; font-size: 11px; line-height: 1.65; }
+    .footer-bottom { justify-content: flex-start; flex-wrap: wrap; gap: 8px 22px; margin-top: 0; padding: 14px 0 20px; border: 0; color: #b8c9dc; font-size: 11px; }
+    .footer-bottom a { color: inherit; text-underline-offset: 3px; }
+    .footer-bottom a:hover { color: #fff; }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .footer-inner { width: calc(100% - 40px); padding-top: 32px; }
+      .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; padding-bottom: 24px; }
+      .footer-grid h2 { margin-bottom: 11px; font-size: 13px; }
+      .footer-grid p, .footer-grid a { font-size: 11px; }
+      .footer-real-note { padding-top: 14px; font-size: 10px; }
+      .footer-bottom { gap: 7px 16px; font-size: 10px; }
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+    .hero-copy > * { animation: hero-copy-arrive .65s cubic-bezier(.2,.7,.25,1) both; }
+    .hero-copy > :nth-child(2) { animation-delay: 90ms; }
+    .hero-copy > :nth-child(3) { animation-delay: 170ms; }
+    .hero-copy > :nth-child(4) { animation-delay: 250ms; }
+    @keyframes hero-copy-arrive {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .footer-grid > div { transition: transform .22s ease; }
+    .footer-grid > div:hover { transform: translateY(-2px); }
+    .back-to-top {
+      position: fixed;
+      right: max(22px, calc((100vw - 1440px) / 2));
+      bottom: 22px;
+      z-index: 10;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid #ffffff70;
+      border-radius: 50%;
+      background: #0b3768;
+      color: #fff;
+      box-shadow: 0 8px 22px #0b244744, inset 0 1px #ffffff33;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease, background .2s ease;
+    }
+    .back-to-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-to-top:hover { background: #1760ad; }
+    .back-to-top svg { width: 20px; height: 20px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-copy > *, .hero-visual svg { animation: none; }
+      .footer-grid > div, .back-to-top { transition: none; }
+    }
+    html { scroll-behavior: smooth; }
+    .utility-bar {
+      min-height: 48px;
+      background: linear-gradient(100deg, #e9f1fc, #fff 52%, #edf4fd);
+      color: #18365f;
+    }
+    .utility-inner { min-height: 48px; gap: 16px; }
+    .utility-caption { color: #18365f; font-size: 11px; font-weight: 800; }
+    .utility-inner .local-time {
+      gap: 5px;
+      padding: 6px 10px;
+      border: 1px solid #d9e5f4;
+      border-radius: 8px;
+      background: #fff;
+      color: #405875;
+      font-size: 11px;
+    }
+    .utility-inner .local-time span { color: #405875; font-size: 11px; }
+    .utility-inner .local-time strong { color: #102b55; font-size: 11px; }
+    .utility-links a, .utility-language { color: #24486f; font-size: 11px; }
+    .utility-links a:hover { color: #064f9f; }
+    .banking-inner .brand, .banking-inner .header-nav > *, .header-actions > * {
+      animation: soft-rise .48s cubic-bezier(.2,.7,.25,1) both;
+    }
+    .banking-inner .header-nav > *:nth-child(2) { animation-delay: 70ms; }
+    .header-actions > *:nth-child(1) { animation-delay: 120ms; }
+    .header-actions > *:nth-child(2) { animation-delay: 170ms; }
+    .header-actions > *:nth-child(3) { animation-delay: 220ms; }
+    .hero-banner {
+      background: linear-gradient(115deg, #123467 0%, #174b91 48%, #2872cb 100%);
+      background-size: 180% 180%;
+      animation: banner-color-shift 18s ease-in-out infinite alternate;
+    }
+    .hero-copy > * { animation: soft-rise .65s cubic-bezier(.2,.7,.25,1) both; }
+    .hero-copy > *:nth-child(1) { animation-delay: 100ms; }
+    .hero-copy > *:nth-child(2) { animation-delay: 180ms; }
+    .hero-copy > *:nth-child(3) { animation-delay: 260ms; }
+    .hero-copy > *:nth-child(4) { animation-delay: 340ms; }
+    .hero-visual { animation: soft-fade .8s ease both; animation-delay: 180ms; }
+    .page-heading { animation: soft-rise .5s cubic-bezier(.2,.7,.25,1) both; }
+    .dashboard-grid > section:not([hidden]),
+    [data-feature-panel]:not([hidden]),
+    .grow-layout > * {
+      animation-name: soft-rise;
+      animation-duration: .48s;
+      animation-timing-function: cubic-bezier(.2,.7,.25,1);
+      animation-fill-mode: both;
+    }
+    .grow-tiles > *:nth-child(2) { animation-delay: 60ms; }
+    .grow-tiles > *:nth-child(3) { animation-delay: 120ms; }
+    .grow-tiles > *:nth-child(4) { animation-delay: 180ms; }
+    .grow-tiles > *:nth-child(5) { animation-delay: 240ms; }
+    .grow-tiles > *:nth-child(6) { animation-delay: 300ms; }
+    .atm-card { animation: soft-rise .4s cubic-bezier(.2,.7,.25,1) both; }
+    .atm-card:nth-child(2) { animation-delay: 60ms; }
+    .atm-card:nth-child(3) { animation-delay: 120ms; }
+    .atm-card:nth-child(4) { animation-delay: 180ms; }
+    .feature-form > *, .transfer-form > *, .grow-calculator > * {
+      animation: soft-rise .38s cubic-bezier(.2,.7,.25,1) both;
+    }
+    .feature-form > *:nth-child(2), .transfer-form > *:nth-child(2), .grow-calculator > *:nth-child(2) { animation-delay: 60ms; }
+    .feature-form > *:nth-child(3), .transfer-form > *:nth-child(3), .grow-calculator > *:nth-child(3) { animation-delay: 120ms; }
+    .feature-field input, .feature-field select, .transfer-field input, .transfer-field select,
+    .header-search input, button, .hero-cta, .grow-start, .grow-tile, .footer-grid a {
+      transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    :focus-visible { outline: 3px solid #f1c76b; outline-offset: 3px; }
+    .footer-grid > div { animation: soft-rise .55s cubic-bezier(.2,.7,.25,1) both; }
+    .footer-grid > div:nth-child(2) { animation-delay: 70ms; }
+    .footer-grid > div:nth-child(3) { animation-delay: 140ms; }
+    .footer-grid > div:nth-child(4) { animation-delay: 210ms; }
+    footer::before { background-size: 200% 100%; animation: footer-glow 7s ease-in-out infinite; }
+    @keyframes soft-rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes soft-fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes banner-color-shift {
+      from { background-position: 0% 50%; }
+      to { background-position: 100% 50%; }
+    }
+    @keyframes footer-glow {
+      from { background-position: 0% 50%; }
+      to { background-position: 100% 50%; }
+    }
+    @media (max-width: 680px) {
+      .utility-inner { min-height: 42px; flex-wrap: wrap; justify-content: space-between; padding: 5px 0; }
+      .utility-inner .local-time { gap: 3px; padding: 4px 7px; font-size: 10px; }
+      .utility-inner .local-time span, .utility-inner .local-time strong { font-size: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon-library" aria-hidden="true" focusable="false">
+    <symbol id="icon-landmark" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M4 10h16M5 10v9m4-9v9m6-9v9m4-9v9M3 21h18M2 19h20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-wallet" viewBox="0 0 24 24"><path d="M20 8V5a2 2 0 0 0-2-2H5a3 3 0 0 0 0 6h15v11H5a3 3 0 0 1-3-3V6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12h-4a2 2 0 0 0 0 4h4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 14h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="icon-user-round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 21a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2 11 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-banknote" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 9h.01M18 15h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="icon-receipt" viewBox="0 0 24 24"><path d="M4 3v18l4-2 4 2 4-2 4 2V3l-4 2-4-2-4 2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 9h6m-6 4h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v6h6M8 13h8m-8 4h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-credit-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2 10h20m-15 5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M18 17V9m-5 8V5m-5 12v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 3v4M8 3v4M3 10h18m-13 4h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-shield-check" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-life-buoy" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m5 5 4.2 4.2m5.6 5.6L19 19m0-14-4.2 4.2m-5.6 5.6L5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5m0-8h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><path d="m18 6-12 12M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-arrow-down" viewBox="0 0 24 24"><path d="M12 3v18m-7-7 7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-chart-no-axes-combined" viewBox="0 0 24 24"><path d="M3 3v18h18M8 16V9m5 7V5m5 11v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="m6 7 4-3 4 3 5-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+  <div class="page-canvas">
+  <header class="header">
+    <div class="utility-bar">
+      <div class="utility-inner">
+        <span class="utility-caption">BANGKOK BANK · real</span>
+        <div class="local-time"><span>Bangkok, Thailand · ICT</span><strong id="thailandClock">Loading local time…</strong></div>
+        <div class="utility-links">
+          <a href="#growClub">Savings planner</a>
+          <a href="#statement">Sample statement</a>
+          <a href="#footer">About this real</a>
+          <span class="utility-language"><svg class="flag" viewBox="0 0 90 60" role="img" aria-label="Flag of Thailand" xmlns="http://www.w3.org/2000/svg"><rect width="90" height="60" fill="#A51931"/><rect y="10" width="90" height="40" fill="#F4F5F8"/><rect y="20" width="90" height="20" fill="#2D2A4A"/></svg>TH</span>
+        </div>
+      </div>
+    </div>
+    <div class="banking-bar">
+      <div class="banking-inner">
+        <a class="brand" href="#workspace" aria-label="Bangkok Bank real home"><span class="brand-mark" aria-hidden="true"><svg class="brand-fallback icon icon-lg"><use href="#icon-landmark"></use></svg><img id="bankLogo" alt="" hidden></span><span class="brand-copy"><span>THAILAND BANGKOK BANK</span><span class="brand-real">SAMPLE real ONLY</span></span></a>
+        <nav class="header-nav" aria-label=" navigation">
+          <details class="nav-menu">
+            <summary>Personal Banking</summary>
+            <div class="nav-dropdown"><a href="#workspace">Account overview</a><a href="#quickServices"> services</a><a href="#statement"> statement</a></div>
+          </details>
+          <details class="nav-menu">
+            <summary>Business Banking</summary>
+            <div class="nav-dropdown"><a href="#growClub">Savings planner</a><a href="#exchangeForm">Currency estimate</a><a href="#footer">About this real</a></div>
+          </details>
+        </nav>
+        <div class="header-actions">
+          <button class="header-action" id="realSignIn" type="button">Log on</button>
+          <a class="header-action" href="#footer" aria-label=" location information" title=" location information"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+          <button class="header-action" id="toggleHeaderSearch" type="button" aria-label="Open real search" aria-expanded="false" aria-controls="headerSearch"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <form class="header-search" id="headerSearch" hidden role="search">
+        <input id="headerSearchInput" type="search" placeholder="Search real services" aria-label="Search real services">
+        <button type="submit">Search</button>
+        <p class="header-search-status" id="headerSearchStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <section class="hero-banner" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Simple tools for everyday planning</p>
+        <h1 id="heroTitle">Banking, made clearer.</h1>
+        <p>Explore a polished sample dashboard, savings planner and useful financial tools in one place.</p>
+        <a class="hero-cta" href="#workspace">Explore the bangkok bank <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-down"></use></svg></a>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 560 430" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="284" cy="388" rx="206" ry="24" fill="#24486F" fill-opacity=".14"/>
+          <rect x="115" y="58" width="252" height="300" rx="24" fill="#F9FBFF" stroke="#9DB4D0" stroke-width="3"/>
+          <rect x="137" y="83" width="208" height="76" rx="13" fill="#103C72"/>
+          <circle cx="165" cy="121" r="13" fill="#BBD6FF"/>
+          <path d="M157 121h16m-8-8v16" stroke="#1C5CB0" stroke-width="2" stroke-linecap="round"/>
+          <rect x="193" y="111" width="116" height="8" rx="4" fill="#D7E7FF"/>
+          <rect x="193" y="128" width="77" height="6" rx="3" fill="#8FB5EB"/>
+          <rect x="139" y="182" width="205" height="13" rx="6.5" fill="#DFE9F5"/>
+          <rect x="139" y="205" width="142" height="9" rx="4.5" fill="#E9EFF7"/>
+          <path d="M151 286 196 252l38 16 47-56 35 16" stroke="#2872D4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="316" cy="228" r="8" fill="#2872D4"/>
+          <rect x="280" y="262" width="201" height="129" rx="18" fill="#0A4F9C" stroke="#E8F1FF" stroke-width="4" transform="rotate(-8 280 262)"/>
+          <rect x="298" y="287" width="38" height="28" rx="5" fill="#F1C76B" transform="rotate(-8 298 287)"/>
+          <path d="m350 299 70-10m-66 27 44-6" stroke="#B8D3F6" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="421" cy="101" r="49" fill="#E8F1FC"/>
+          <path d="M421 72v58m19-42c-5-11-38-10-38 4 0 17 38 7 38 24s-33 17-41 2" stroke="#2864D7" stroke-width="5" stroke-linecap="round"/>
+          <path d="m85 145 6 7 12-16m340 71 5 6 11-14" stroke="#2872D4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+  </header>
+  <dialog class="login-info-dialog" id="loginInfoDialog" aria-labelledby="loginInfoTitle">
+    <h2 id="loginInfoTitle"sign-in is unavailable</h2>
+    <p>This is a fictional educational interface. It has real login, customer account, or banking connection. Please do not enter passwords, PINs, card details, or OTPs.</p>
+    <button id="closeLoginInfo" type="button">Continue browsing</button>
+  </dialog>
+  <main id="workspace">
+    <div class="page-heading">
+      <h1>Account overview</h1>
+      <p>A clear view of your sample balance, profile and services.</p>
+    </div>
+    <dialog class="welcome-toast" id="welcomeToast" aria-labelledby="welcomeTitle" aria-describedby="welcomeDescription">
+      <span class="welcome-toast-icon" aria-hidden="true"><svg class="icon"><use href="#icon-shield-check"></use></svg></span>
+      <div class="welcome-toast-content">
+        <h2 id="welcomeTitle">Welcome</h2>
+        <p id="welcomeDescription">Your fictional  account is ready.</p>
+        <p class="toast-safety">Never share your OTP, PIN, or password with anyone.</p>
+        <div class="toast-actions">
+          <button class="toast-notify" id="enableNotifications" type="button"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-life-buoy"></use></svg><span>Enable device notifications</span></button>
+          <p class="toast-status" id="notificationStatus" role="status" aria-live="polite">Device notifications are optional and require your permission.</p>
+          <button class="toast-continue" id="continueToreal" type="button">Continue </button>
+        </div>
+      </div>
+      <button class="toast-dismiss" id="dismissWelcome" type="button" aria-label="Dismiss welcome message"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-x"></use></svg></button>
+    </dialog>
+    <div class="dashboard-grid" aria-label="Dashboard cards">
+      <section class="workspace" aria-label="Account balance card">
+        <div class="workspace-inner">
+          <div class="workspace-icon" aria-hidden="true"><svg class="icon"><use href="#icon-wallet"></use></svg></div>
+          <div class="balance-heading">
+            <h2>Account balance</h2>
+            <button class="balance-visibility" id="balanceButton" type="button" aria-pressed="false" aria-label="Show account balance" title="Show account balance">
+              <svg class="eye-open" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/></svg>
+              <svg class="eye-closed" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 3 18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.2A10.8 10.8 0 0 1 12 5c6 0 9.5 7 9.5 7a15 15 0 0 1-3.1 3.8M6.2 6.2C3.9 7.8 2.5 12 2.5 12s3.5 7 9.5 7c1 0 1.9-.2 2.7-.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <p>Fictional sample funds · No real account</p>
+          <div class="real-balance" id="realBalance" aria-live="polite">
+            <span class="real-balance-label">Fictional real balance</span>
+            <strong>***********</strong>
+            <span class="real-balance-note">Sample amount only · No real funds or account</span>
+          </div>
+        </div>
+      </section>
+      <section class="personal-card" aria-labelledby="personalHeading">
+        <h2 class="card-heading" id="personalHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-user-round"></use></svg></span>Personal details</h2>
+        <p class="personal-intro">Fictional sample profile. This page is not connected to a bank account.</p>
+        <div class="profile-row">
+          <div class="profile-photo" id="photoPreview" role="img" aria-label="Sample profile photo">DU</div>
+          <div class="real-balance-note">Account Holder Details </div>
+        </div>
+        <button class="details-toggle" id="detailsToggle" type="button" aria-expanded="false" aria-controls="detailsPanel">
+          <span id="detailsToggleText">Show Details</span><span class="details-toggle-icon" aria-hidden="true"><svg class="icon icon-sm"><use href="#icon-chevron-down"></use></svg></span>
+        </button>
+        <div class="details-panel" id="detailsPanel" aria-hidden="true">
+          <div class="field-grid" aria-label="Read-only sample personal details">
+            <div class="profile-field"><span>Name</span><strong id="accountHolderName">real User</strong></div>
+            <div class="profile-field"><span>Country</span><strong>Sample</strong></div>
+            <div class="profile-field"><span>Phone number</span><strong>Not provided</strong></div>
+            <div class="profile-field"><span>Account status</span><strong>real · Not connected</strong></div>
+            <div class="profile-field"><span>Account number</span><strong>real-0000</strong></div>
+          </div>
+          <div class="reward-panel" aria-label="Sample balance information">
+            <div class="reward-item"><span>Sample real balance</span><strong id="detailsSampleBalance">฿83,500.00</strong></div>
+            <div class="reward-item"><span>Account connection</span><strong>None</strong></div>
+            <p class="reward-safety">Fictional sample only. No real bank account, balance, or transfer is connected.</p>
+          </div>
+        </div>
+      </section>
+      <section class="feature-card service-launcher" id="quickServices" aria-labelledby="quickServicesHeading">
+        <h2 class="card-heading" id="quickServicesHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-compass"></use></svg></span>Quick services</h2>
+        <p class="feature-copy">Choose a service to open its separate workspace.</p>
+        <div class="launcher-actions">
+          <button class="launcher-button" type="button" data-open-feature="transferPanel"><span class="launcher-icon" aria-hidden="true"><svg class="icon"><use href="#icon-send"></use></svg></span><span class="launcher-copy">Fund Transfer<small>Review transfer</small></span></button>
+          <button class="launcher-button" type="button" data-open-feature="addMoneyPanel"><span class="launcher-icon" aria-hidden="true"><svg class="icon"><use href="#icon-banknote"></use></svg></span><span class="launcher-copy">Add Money<small>Add funds</small></span></button>
+          <button class="launcher-button" type="button" data-open-feature="billPanel"><span class="launcher-icon" aria-hidden="true"><svg class="icon"><use href="#icon-receipt"></use></svg></span><span class="launcher-copy">Pay Bills<small>Record bill</small></span></button>
+        </div>
+      </section>
+      <section class="transfer-card" id="transferPanel" data-feature-panel hidden aria-labelledby="transferHeading">
+        <h2 class="card-heading" id="transferHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-send"></use></svg></span>Fund transfer · real</h2>
+        <p class="transfer-note">Simulation only. No transfer, payment, or data submission will occur.</p>
+        <form class="transfer-form" id="transferForm">
+          <div class="transfer-field">
+            <label for="transferMethod"> transfer method</label>
+            <select id="transferMethod" required>
+              <option>PromptPay-style </option>
+              <option>Local transfer </option>
+              <option>International transfer </option>
+            </select>
+          </div>
+          <div class="transfer-field">
+            <label for="transferRecipient">Recipient  name or alias</label>
+            <input id="transferRecipient" maxlength="50" autocomplete="off" placeholder="Example: real Recipient" required>
+          </div>
+          <div class="transfer-field">
+            <label for="transferAmount">Sample amount </label>
+            <input id="transferAmount" type="number" min="1" max="1000000" step="0.01" inputmode="decimal" placeholder="0.00" required>
+          </div>
+          <button class="transfer-submit" type="submit"><span class="button-content"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-file-text"></use></svg>Review transfer</span></button>
+        </form>
+        <div class="transfer-review" id="transferReview" hidden>
+          <h3>Review simulation</h3>
+          <p id="transferSummary"></p>
+          <div class="transfer-review-actions">
+            <button class="transfer-confirm" id="confirmTransfer" type="button"><span class="button-content"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-shield-check"></use></svg>Confirm simulation</span></button>
+            <button class="transfer-cancel" id="cancelTransfer" type="button"><span class="button-content"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-x"></use></svg>Cancel</span></button>
+          </div>
+        </div>
+        <p class="transfer-status" id="transferStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" id="addMoneyPanel" data-feature-panel hidden aria-labelledby="addMoneyHeading">
+        <h2 class="card-heading" id="addMoneyHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-banknote"></use></svg></span>Add money · real</h2>
+        <p class="feature-copy">Add a fictional sample credit to the real balance. No payment method is connected.</p>
+        <form class="feature-form" id="addMoneyForm">
+          <div class="feature-field"><label for="addMoneyMethod">deposit type</label><select id="addMoneyMethod"><option> Cash deposit</option><option>Sample bank transfer</option><option>Sample payroll credit</option></select></div>
+          <div class="feature-field"><label for="addMoneyAmount">Amount </label><input id="addMoneyAmount" type="number" min="1" max="1000000" step="0.01" placeholder="0.00" required></div>
+          <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>Add funds</button>
+        </form>
+        <p class="feature-status" id="addMoneyStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" id="billPanel" data-feature-panel hidden aria-labelledby="billHeading">
+        <h2 class="card-heading" id="billHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-receipt"></use></svg></span>Pay bills </h2>
+        <p class="feature-copy">Record a sample bill locally. No provider is contacted and no payment is made.</p>
+        <form class="feature-form" id="billForm">
+          <div class="feature-field"><label for="billProvider">D bill type</label><select id="billProvider"><option>Electricity · MEA / PEA </option><option>Water · MWA </option><option>Internet · real provider</option><option>Mobile top-up · </option></select></div>
+          <div class="feature-field"><label for="billReference">Reference</label><input id="billReference" maxlength="24" placeholder="Example: real-123" required></div>
+          <div class="feature-field"><label for="billAmount">Amount </label><input id="billAmount" type="number" min="1" max="100000" step="0.01" placeholder="0.00" required></div>
+          <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-receipt"></use></svg>Record bill</button>
+        </form>
+        <p class="feature-status" id="billStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" aria-labelledby="statementHeading">
+        <h2 class="card-heading" id="statementHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-file-text"></use></svg></span>Account statement</h2>
+        <p class="feature-copy">Review the sample activity created in this browser session.</p>
+        <button class="feature-button" id="statementToggle" type="button" aria-expanded="false" aria-controls="statementList"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-file-text"></use></svg>View statement</button>
+        <div class="statement-list" id="statementList" hidden>
+          <div style="overflow-x:auto;margin-top:12px"><table class="statement-table"><thead><tr><th>Activity</th><th>Amount</th></tr></thead><tbody id="statementRows"></tbody></table></div>
+          <button class="feature-button secondary" id="downloadStatement" type="button" style="margin-top:10px"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>Download real CSV</button>
+        </div>
+        <p class="feature-status" id="statementStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" aria-labelledby="cardHeading">
+        <h2 class="card-heading" id="cardHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-credit-card"></use></svg></span>Digital card · real</h2>
+        <p class="feature-copy">Card Active: View your card details securely to manage online purchases and ATM settings.</p>
+        <div class="card-sample" aria-label="Fictional real card">
+          <div class="card-sample-top"><span>BANGKOK BANK </span><span>VIRTUAL ATM CARD </span></div>
+          <div class="card-sample-number">•••• &nbsp;•••• &nbsp;•••• &nbsp;4829</div>
+          <div class="card-sample-bottom"><span>CARD NOT ACTIVE</span><span>BANGKOK BANK</span></div>
+        </div>
+        <div class="card-switch-row"><span> card status: <strong id="cardStatus">Locked</strong></span><button class="card-switch" id="cardLock" type="button" aria-pressed="false">Unlock card</button></div>
+        <p class="feature-status" id="cardMessage" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" aria-labelledby="savingsHeading">
+        <h2 class="card-heading" id="savingsHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-target"></use></svg></span>Savings goal </h2>
+        <p class="feature-copy">Track progress toward a fictional savings target.</p>
+        <div class="feature-field"><label for="goalTarget">Sample goal target </label><input id="goalTarget" type="number" min="1" max="10000000" value="50000"></div>
+        <p class="feature-copy" id="goalProgressText">Sample progress: 12,500.00 of 50,000.00</p>
+        <div class="goal-meter" role="progressbar" aria-label="Sample savings goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25"><span id="goalMeterFill"></span></div>
+        <button class="feature-button secondary" id="updateGoal" type="button"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-target"></use></svg>Update goal</button>
+        <p class="feature-status" id="goalStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card budget-card" aria-labelledby="budgetHeading">
+        <h2 class="card-heading" id="budgetHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-chart-no-axes-combined"></use></svg></span>Monthly budget </h2>
+        <p class="feature-copy">Manage your monthly budget with ease! Set spending goals and track your real-time performance.</p>
+        <div class="budget-summary"><span> spending</span><strong>18,400.00</strong></div>
+        <div class="feature-field"><label for="budgetTarget">Monthly budget target </label><input id="budgetTarget" type="number" min="1" max="10000000" step="100" value="50000"></div>
+        <div class="goal-meter budget-meter" id="budgetMeter" role="progressbar" aria-label="Sample monthly budget usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="37"><span id="budgetMeterFill"></span></div>
+        <p class="feature-copy" id="budgetProgressText"> spending is 37% of your 50,000.00  budget.</p>
+        <button class="feature-button secondary" id="updateBudget" type="button"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chart-no-axes-combined"></use></svg>Update real budget</button>
+        <p class="feature-status" id="budgetStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" aria-labelledby="exchangeHeading">
+        <h2 class="card-heading" id="exchangeHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-chart"></use></svg></span>Currency estimate </h2>
+        <p class="feature-copy">Static  exchange rates  a live quote or exchange.</p>
+        <form class="feature-form" id="exchangeForm">
+          <div class="feature-field"><label for="exchangeAmount"> amount </label><input id="exchangeAmount" type="number" min="1" max="10000000" step="0.01" placeholder="0.00" required></div>
+          <div class="feature-field"><label for="exchangeCurrency">Estimate in</label><select id="exchangeCurrency"><option value="USD">USD  35.8</option><option value="EUR">EUR  rate 38.7</option><option value="GBP">GBP · sample rate 46.1</option><option value="CNY">CNY  4.9</option></select></div>
+          <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chart"></use></svg>Calculate estimate</button>
+        </form>
+        <p class="feature-status" id="exchangeStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" aria-labelledby="reminderHeading">
+        <h2 class="card-heading" id="reminderHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-calendar"></use></svg></span>Payment reminder </h2>
+        <p class="feature-copy">Create a local reminder preview. No recurring payment will be scheduled.</p>
+        <form class="feature-form" id="reminderForm">
+          <div class="feature-field"><label for="reminderName">Reminder name</label><input id="reminderName" maxlength="40" placeholder="Example: Utility bill" required></div>
+          <div class="feature-field"><label for="reminderDate">Reminder date</label><input id="reminderDate" type="date" required></div>
+          <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-calendar"></use></svg>Save  reminder</button>
+        </form>
+        <p class="feature-status" id="reminderStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="feature-card" aria-labelledby="safetyHeading">
+        <h2 class="card-heading" id="safetyHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-shield-check"></use></svg></span>Banking safety</h2>
+        <p class="feature-copy">This is a fictional prototype. Never enter real account credentials, card details, OTPs, or passwords here.</p>
+        <button class="feature-button secondary" id="safetyButton" type="button"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-shield-check"></use></svg>Show safety tip</button>
+        <p class="feature-status" id="safetyMessage" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+    <section class="grow-club" id="growClub" aria-labelledby="growClubHeading">
+      <h2 class="grow-heading" id="growClubHeading">Grow Club</h2>
+      <div class="grow-layout">
+        <article class="grow-feature">
+          <span class="grow-label">Financial Calculator</span>
+          <h3>Reach Your Goals Faster with a Savings Planner</h3>
+          <p>Make a simple monthly savings estimate for your personal goal. This educational calculator does not include interest or represent a bank product.</p>
+          <button class="grow-start" type="button" data-open-feature="growCalculatorPanel"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chart"></use></svg>Start planning</button>
+          <div class="grow-art" aria-hidden="true">
+            <svg viewBox="0 0 280 150" fill="none">
+              <path d="M27 136h226" stroke="#9cb5d8" stroke-width="2" stroke-linecap="round"/>
+              <rect x="79" y="48" width="118" height="83" rx="10" fill="#fff" stroke="#6f91c1" stroke-width="2"/>
+              <path d="M96 68h84M96 82h55" stroke="#bdd0ec" stroke-width="5" stroke-linecap="round"/>
+              <path d="M104 112h16m10 0h16m10 0h16" stroke="#3478d4" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="211" cy="49" r="25" fill="#d8e8ff" stroke="#3478d4" stroke-width="2"/>
+              <path d="M211 35v28m10-20c-2-5-18-5-18 2 0 9 17 3 17 11s-15 8-19 1" stroke="#2864d7" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M57 114c1-16 11-26 24-26s23 10 24 26v22H57z" fill="#3478d4"/>
+              <circle cx="81" cy="73" r="18" fill="#ffd8c7" stroke="#173d76" stroke-width="2"/>
+              <path d="M64 73c0-15 8-24 19-24 12 0 20 9 20 23-6-2-12-8-15-14-6 8-14 13-24 15z" fill="#173d76"/>
+              <path d="m44 44 5 5m-5 0 5-5M235 98l5 5m-5 0 5-5" stroke="#3478d4" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </article>
+        <div class="grow-tiles" aria-label="Grow Club real services">
+          <button class="grow-tile" type="button" data-open-feature="growRegistrationPanel"><svg class="icon" aria-hidden="true"><use href="#icon-user-round"></use></svg><strong>Online Registration</strong></button>
+          <button class="grow-tile" type="button" data-open-feature="growCardsPanel"><svg class="icon" aria-hidden="true"><use href="#icon-credit-card"></use></svg><strong>Credit Cards</strong></button>
+          <button class="grow-tile" type="button" data-open-feature="growCalculatorPanel"><svg class="icon" aria-hidden="true"><use href="#icon-chart"></use></svg><strong>Financial Calculator</strong></button>
+          <button class="grow-tile" type="button" data-open-feature="growLocationsPanel"><svg class="icon" aria-hidden="true"><use href="#icon-compass"></use></svg><strong>Locate Us</strong></button>
+          <button class="grow-tile" type="button" data-open-feature="growContactPanel"><svg class="icon" aria-hidden="true"><use href="#icon-life-buoy"></use></svg><strong>Contact Us</strong></button>
+          <button class="grow-tile" type="button" data-open-feature="growRatesPanel"><svg class="icon" aria-hidden="true"><use href="#icon-file-text"></use></svg><strong>Rates and Fees</strong></button>
+        </div>
+      </div>
+    </section>
+    <section class="feature-card" id="growCalculatorPanel" data-feature-panel hidden aria-labelledby="growCalculatorHeading">
+      <h2 class="card-heading" id="growCalculatorHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-chart"></use></svg></span>Financial calculator </h2>
+      <p class="feature-copy">Estimate equal monthly savings toward a target. This simple calculation excludes interest, fees, and inflation.</p>
+      <form class="grow-calculator" id="growCalculatorForm">
+        <label for="growTarget">Savings goal <input id="growTarget" type="number" min="1" max="100000000" step="0.01" placeholder="Example: 60000" required></label>
+        <label for="growMonths">Time to save (months)<input id="growMonths" type="number" min="1" max="600" step="1" placeholder="Example: 12" required></label>
+        <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chart"></use></svg>Calculate monthly amount</button>
+        <p class="grow-result" id="growCalculatorResult" role="status" aria-live="polite">Enter a goal and time period to see a sample estimate.</p>
+      </form>
+      <p class="feature-copy">Fictional real only. This is not financial advice or a real bank product.</p>
+    </section>
+    <section class="feature-card" id="growRegistrationPanel" data-feature-panel hidden aria-labelledby="growRegistrationHeading">
+      <h2 class="card-heading" id="growRegistrationHeading">Online Registration </h2>
+      <p class="grow-panel-note">This prototype does not collect applications or identity documents. No real account can be opened here.</p>
+    </section>
+    <section class="feature-card" id="growCardsPanel" data-feature-panel hidden aria-labelledby="growCardsHeading">
+      <h2 class="card-heading" id="growCardsHeading">Credit Cards </h2>
+      <p class="grow-panel-note">Explore the existing sample card controls in the dashboard. No credit application, card issuance, or credit dec.</p>
+    </section>
+    <section class="feature-card" id="growLocationsPanel" data-feature-panel hidden aria-labelledby="growLocationsHeading">
+      <h2 class="card-heading" id="growLocationsHeading">Locate Us · real</h2>
+      <p class="grow-panel-note">Browse four fictional Bangkok ATM locations for this demo. These are sample areas, not real bank locations or directions.</p>
+      <div class="atm-list" aria-label="Sample ATM locations">
+        <article class="atm-card">
+          <h3>Siam Square ATM</h3>
+          <p>Siam Square area, Pathum Wan, Bangkok<br>Sample location · Not a real ATM</p>
+        </article>
+        <article class="atm-card">
+          <h3>Asok Junction ATM</h3>
+          <p>Asok area, Watthana, Bangkok<br>Sample location · Not a real ATM</p>
+        </article>
+        <article class="atm-card">
+          <h3>Silom Road ATM</h3>
+          <p>Silom area, Bang Rak, Bangkok<br>Sample location · Not a real ATM</p>
+        </article>
+        <article class="atm-card">
+          <h3>Chatuchak Park ATM</h3>
+          <p>Chatuchak area, Bangkok<br>Sample location · Not a real ATM</p>
+        </article>
+      </div>
+    </section>
+    <section class="feature-card" id="growContactPanel" data-feature-panel hidden aria-labelledby="growContactHeading">
+      <h2 class="card-heading" id="growContactHeading">Contact Us </h2>
+      <p class="grow-panel-note">real customer support is connected. Do  share account details, passwords, PINs, or OTPs with anyone.</p>
+    </section>
+    <section class="feature-card" id="growRatesPanel" data-feature-panel hidden aria-labelledby="growRatesHeading">
+      <h2 class="card-heading" id="growRatesHeading">Rates and Fees </h2>
+      <p class="grow-panel-note">Sample estimates only: USD 35.8, EUR 38.7, GBP 46.1, and CNY 4.9 THB per currency unit as displayed in the real calculator. These are live exchange rates, bank fees, or offers.</p>
+    </section>
+  </main>
+  <dialog class="service-dialog" id="serviceDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-header">
+      <h2 id="dialogTitle"> service</h2>
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="Close service window"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div class="dialog-content" id="dialogContent"></div>
+  </dialog>
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <h2>Personal</h2>
+          <a href="#growClub">Save and Invest </a>
+          <a href="#cardHeading">Cards for Me </a>
+          <a href="#personalHeading">My Profile </a>
+          <a href="#quickServices">Digital Banking </a>
+          <a href="#quickServices">Other Services </a>
+        </div>
+        <div>
+          <h2>Business</h2>
+          <a href="#quickServices">Manage My Business </a>
+          <a href="#budgetHeading">Finance My Business </a>
+          <a href="#growClub">My International Trade </a>
+          <a href="#safetyHeading">Protect My Business </a>
+          <a href="#exchangeForm">Currency Estimate </a>
+        </div>
+        <div>
+          <h2>About Bangkok Bank real</h2>
+          <a href="#workspace">Project Overview</a>
+          <a href="#growClub"> Tools</a>
+          <a href="#safetyHeading">Privacy and Safety</a>
+          <a href="#footerrealNote">About This Prototype</a>
+          <a href="#footerrealNote">No Limitations</a>
+        </div>
+        <div>
+          <h2>International Banking</h2>
+          <a href="#exchangeForm">Currency Estimate</a>
+          <a href="#exchangeHeading">Rates and Fees</a>
+          <a href="#growClub">International Services · </a>
+          <a href="#footerrealNote">Cross-border Banking </a>
+        </div>
+        <div>
+          <h2>Others</h2>
+          <a href="#footerrealNote">Support Information</a>
+          <a href="#safetyHeading">Contact and Safety</a>
+          <a href="#exchangeHeading">Rates and Fees </a>
+          <a href="#statementHeading">Sample Statement</a>
+          <a href="#safetyHeading">Security Tips</a>
+        </div>
+      </div>
+      <p class="footer-real-note" id="footerrealNote">Fictional banking interface real only. This site is not affiliated with a bank or financial institution. No real accounts, funds, transfers, or payments are available. Never enter real financial details.</p>
+      <div class="footer-bottom"><span>Fictional real · No banking services</span><a href="#footerrealNote">Privacy Notice </a><a href="#footerrealNote">Cookies Notice </a><a href="#footerrealNote">Terms and Conditions </a></div>
+    </div>
+  </footer>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-7 7 7-7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <script>
+    (() => {
+      const BANK_LOGO_URL = "";
+      const PROFILE_PHOTO_URL = ""; // Paste a direct HTTPS image URL here.
+      let sampleBalance = 83500.00;
+      const activity = [
+        { label: "Opening sample balance", amount: 83500.00, incoming: true }
+      ];
+      const sampleGoalSaved = 12500;
+      const sampleMonthlySpend = 18400;
+      const clock = document.getElementById("thailandClock");
+      const formatter = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Bangkok",
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      });
+      const updateClock = () => { clock.textContent = formatter.format(new Date()); };
+      updateClock();
+      window.setInterval(updateClock, 1000);
+      const backToTop = document.getElementById("backToTop");
+      let scrollFrame = 0;
+      window.addEventListener("scroll", () => {
+        if (scrollFrame) return;
+        scrollFrame = window.requestAnimationFrame(() => {
+          const visible = window.scrollY > 500;
+          backToTop.classList.toggle("is-visible", visible);
+          backToTop.setAttribute("aria-hidden", String(!visible));
+          backToTop.tabIndex = visible ? 0 : -1;
+          scrollFrame = 0;
+        });
+      }, { passive: true });
+      backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+      const loginInfoDialog = document.getElementById("loginInfoDialog");
+      document.getElementById("realSignIn").addEventListener("click", () => loginInfoDialog.showModal());
+      document.getElementById("closeLoginInfo").addEventListener("click", () => loginInfoDialog.close());
+      loginInfoDialog.addEventListener("click", event => {
+        if (event.target === loginInfoDialog) loginInfoDialog.close();
+      });
+      const headerSearch = document.getElementById("headerSearch");
+      const headerSearchInput = document.getElementById("headerSearchInput");
+      const headerSearchStatus = document.getElementById("headerSearchStatus");
+      const toggleHeaderSearch = document.getElementById("toggleHeaderSearch");
+      toggleHeaderSearch.addEventListener("click", () => {
+        const opening = headerSearch.hidden;
+        headerSearch.hidden = !opening;
+        toggleHeaderSearch.setAttribute("aria-expanded", String(opening));
+        if (opening) headerSearchInput.focus();
+      });
+      headerSearch.addEventListener("submit", event => {
+        event.preventDefault();
+        const query = headerSearchInput.value.trim().toLocaleLowerCase();
+        if (!query) {
+          headerSearchStatus.textContent = "Enter a service or section to search.";
+          headerSearchInput.focus();
+          return;
+        }
+        const headings = [...document.querySelectorAll("main h1, main h2, main h3")];
+        const match = headings.find(heading => heading.textContent.toLocaleLowerCase().includes(query));
+        if (!match) {
+          headerSearchStatus.textContent = "No matching real section was found. Try account, transfer, statement, or savings.";
+          return;
+        }
+        const target = match.closest("section") || match;
+        headerSearchStatus.textContent = `Found: ${match.textContent.trim()}.`;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      const welcomeToast = document.getElementById("welcomeToast");
+      const accountHolderName = document.getElementById("accountHolderName").textContent.trim();
+      const welcomeTitle = document.getElementById("welcomeTitle");
+      const notificationButton = document.getElementById("enableNotifications");
+      const notificationButtonLabel = notificationButton.querySelector("span");
+      const notificationStatus = document.getElementById("notificationStatus");
+      const notificationsAvailable = window.isSecureContext && "Notification" in window;
+      welcomeTitle.textContent = `Welcome, ${accountHolderName}`;
+      document.getElementById("dismissWelcome").addEventListener("click", () => {
+        welcomeToast.close();
+      });
+      document.getElementById("continueToreal").addEventListener("click", () => welcomeToast.close());
+      function sendWelcomeNotification() {
+        try {
+          new Notification(`Welcome, ${accountHolderName}`, {
+            body: "Never share your OTP, PIN, or password with anyone.",
+            tag: "tamim-real-welcome"
+          });
+          notificationStatus.textContent = "Welcome notification sent to this device.";
+          return true;
+        } catch (error) {
+          console.error("Could not show the device notification.", error);
+          notificationStatus.textContent = "The browser could not show a device notification.";
+          return false;
+        }
+      }
+      if (!notificationsAvailable) {
+        notificationButton.disabled = true;
+        notificationButtonLabel.textContent = "Device notifications unavailable";
+        notificationStatus.textContent = "Device notifications require a supported browser and a secure HTTPS page.";
+      } else if (Notification.permission === "granted") {
+        notificationButtonLabel.textContent = "Send welcome notification";
+        sendWelcomeNotification();
+      } else if (Notification.permission === "denied") {
+        notificationButton.disabled = true;
+        notificationButtonLabel.textContent = "Notifications blocked";
+        notificationStatus.textContent = "Notifications are blocked in browser settings.";
+      }
+      notificationButton.addEventListener("click", () => {
+        if (!notificationsAvailable) return;
+        if (Notification.permission === "granted") {
+          sendWelcomeNotification();
+          return;
+        }
+        if (Notification.permission === "denied") {
+          notificationStatus.textContent = "Notifications are blocked in browser settings.";
+          return;
+        }
+        Notification.requestPermission().then(permission => {
+          if (permission === "granted") {
+            notificationButtonLabel.textContent = "Send welcome notification";
+            sendWelcomeNotification();
+          } else if (permission === "denied") {
+            notificationButton.disabled = true;
+            notificationButtonLabel.textContent = "Notifications blocked";
+            notificationStatus.textContent = "Notifications are blocked in browser settings.";
+          } else {
+            notificationStatus.textContent = "Notification permission was not granted.";
+          }
+        }, error => {
+          console.error("Could not request notification permission.", error);
+          notificationStatus.textContent = "The browser could not request notification permission.";
+        });
+      });
+      welcomeToast.showModal();
+      const balanceButton = document.getElementById("balanceButton");
+      const realBalance = document.getElementById("realBalance");
+      balanceButton.addEventListener("click", () => {
+        const isVisible = balanceButton.getAttribute("aria-pressed") === "true";
+        balanceButton.setAttribute("aria-pressed", String(!isVisible));
+        balanceButton.setAttribute("aria-label", isVisible ? "Show account balance" : "Hide account balance");
+        balanceButton.title = isVisible ? "Show account balance" : "Hide account balance";
+        updateSampleBalance();
+      });
+      const formatMoney = value => `฿${value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      function updateSampleBalance() {
+        const isVisible = balanceButton.getAttribute("aria-pressed") === "true";
+        const displayedBalance = isVisible ? formatMoney(sampleBalance) : "***********";
+        realBalance.querySelector("strong").textContent = displayedBalance;
+        document.getElementById("detailsSampleBalance").textContent = displayedBalance;
+      }
+      function addActivity(label, amount, incoming) {
+        activity.unshift({ label, amount, incoming });
+      }
+      function readAmount(input, maximum) {
+        const amount = Number(input.value);
+        if (!Number.isFinite(amount) || amount <= 0 || amount > maximum) {
+          input.setCustomValidity(`Enter a sample amount greater than zero and no more than ${formatMoney(maximum)}.`);
+          input.reportValidity();
+          input.setCustomValidity("");
+          return null;
+        }
+        return Math.round(amount * 100) / 100;
+      }
+      function populateStatement() {
+        const rows = document.getElementById("statementRows");
+        rows.replaceChildren();
+        activity.forEach(item => {
+          const row = document.createElement("tr");
+          const label = document.createElement("td");
+          const amount = document.createElement("td");
+          label.textContent = item.label;
+          amount.textContent = `${item.incoming ? "+" : "−"}${formatMoney(item.amount)}`;
+          row.append(label, amount);
+          rows.append(row);
+        });
+      }
+      const detailsToggle = document.getElementById("detailsToggle");
+      const detailsPanel = document.getElementById("detailsPanel");
+      detailsToggle.addEventListener("click", () => {
+        const expanded = detailsToggle.getAttribute("aria-expanded") === "true";
+        detailsToggle.setAttribute("aria-expanded", String(!expanded));
+        detailsPanel.setAttribute("aria-hidden", String(expanded));
+        detailsPanel.classList.toggle("is-open", !expanded);
+        document.getElementById("detailsToggleText").textContent = expanded ? "Show Details" : "Hide Details";
+      });
+      const serviceDialog = document.getElementById("serviceDialog");
+      const dialogContent = document.getElementById("dialogContent");
+      const featurePanels = new Map();
+      let activeFeatureId = null;
+      ["transferPanel", "addMoneyPanel", "billPanel", "growCalculatorPanel", "growRegistrationPanel", "growCardsPanel", "growLocationsPanel", "growContactPanel", "growRatesPanel"].forEach(id => {
+        const panel = document.getElementById(id);
+        featurePanels.set(id, { panel, parent: panel.parentElement, nextSibling: panel.nextSibling });
+      });
+      document.querySelectorAll("[data-open-feature]").forEach(button => {
+        button.addEventListener("click", () => {
+          const entry = featurePanels.get(button.dataset.openFeature);
+          if (!entry || serviceDialog.open) return;
+          const heading = entry.panel.querySelector("h2");
+          activeFeatureId = button.dataset.openFeature;
+          document.getElementById("dialogTitle").textContent = heading.textContent;
+          entry.panel.hidden = false;
+          dialogContent.append(entry.panel);
+          serviceDialog.showModal();
+        });
+      });
+      function restoreFeaturePanel() {
+        if (!activeFeatureId) return;
+        const entry = featurePanels.get(activeFeatureId);
+        if (!entry) return;
+        entry.panel.hidden = true;
+        if (entry.nextSibling && entry.nextSibling.parentElement === entry.parent) {
+          entry.parent.insertBefore(entry.panel, entry.nextSibling);
+        } else {
+          entry.parent.append(entry.panel);
+        }
+        activeFeatureId = null;
+      }
+      function closeServiceDialog() {
+        if (!serviceDialog.open) return;
+        restoreFeaturePanel();
+        serviceDialog.close();
+      }
+      document.getElementById("dialogClose").addEventListener("click", closeServiceDialog);
+      serviceDialog.addEventListener("click", event => {
+        if (event.target === serviceDialog) closeServiceDialog();
+      });
+      serviceDialog.addEventListener("cancel", event => {
+        event.preventDefault();
+        closeServiceDialog();
+      });
+      serviceDialog.addEventListener("close", () => {
+        restoreFeaturePanel();
+      });
+      const transferForm = document.getElementById("transferForm");
+      const transferReview = document.getElementById("transferReview");
+      const transferSummary = document.getElementById("transferSummary");
+      const transferStatus = document.getElementById("transferStatus");
+      let pendingTransfer = null;
+      const formatrealAmount = amount => `฿${amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      transferForm.addEventListener("submit", event => {
+        event.preventDefault();
+        if (!transferForm.reportValidity()) return;
+        const amount = Number(document.getElementById("transferAmount").value);
+        if (!Number.isFinite(amount) || amount < 1 || amount > 1000000) {
+          document.getElementById("transferAmount").setCustomValidity("Enter a sample amount from ฿1 to ฿1,000,000.");
+          document.getElementById("transferAmount").reportValidity();
+          document.getElementById("transferAmount").setCustomValidity("");
+          return;
+        }
+        pendingTransfer = {
+          method: document.getElementById("transferMethod").value,
+          recipient: document.getElementById("transferRecipient").value.trim(),
+          amount
+        };
+        transferSummary.textContent = `${pendingTransfer.method} to ${pendingTransfer.recipient} for ${formatrealAmount(pendingTransfer.amount)}. Confirming records a real-only activity; no money will be sent or deducted.`;
+        transferReview.hidden = false;
+        transferStatus.textContent = "";
+      });
+      document.getElementById("confirmTransfer").addEventListener("click", () => {
+        if (!pendingTransfer) return;
+        transferReview.hidden = true;
+        transferForm.reset();
+        transferStatus.textContent = `real transfer recorded: ${formatrealAmount(pendingTransfer.amount)} to ${pendingTransfer.recipient}. No real transfer occurred.`;
+        pendingTransfer = null;
+      });
+      document.getElementById("cancelTransfer").addEventListener("click", () => {
+        transferReview.hidden = true;
+        pendingTransfer = null;
+        transferStatus.textContent = "real transfer cancelled. No money was sent.";
+      });
+      document.getElementById("growCalculatorForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const target = Number(document.getElementById("growTarget").value);
+        const months = Number(document.getElementById("growMonths").value);
+        if (!Number.isFinite(target) || target < 1 || target > 100000000 || !Number.isInteger(months) || months < 1 || months > 600) {
+          document.getElementById("growCalculatorResult").textContent = "Enter a goal from ฿1 to ฿100,000,000 and a period from 1 to 600 whole months.";
+          return;
+        }
+        const monthlyAmount = target / months;
+        document.getElementById("growCalculatorResult").textContent = `Sample estimate: save ฿${monthlyAmount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} each month for ${months} months to reach ฿${target.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}, excluding interest and fees.`;
+      });
+      document.getElementById("addMoneyForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const input = document.getElementById("addMoneyAmount");
+        const amount = readAmount(input, 1000000);
+        if (amount === null) return;
+        sampleBalance = Math.round((sampleBalance + amount) * 100) / 100;
+        updateSampleBalance();
+        const method = document.getElementById("addMoneyMethod").value;
+        addActivity(method, amount, true);
+        document.getElementById("addMoneyStatus").textContent = `${formatMoney(amount)} added to sample balance. No funds were received.`;
+        event.currentTarget.reset();
+      });
+      document.getElementById("billForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const input = document.getElementById("billAmount");
+        const amount = readAmount(input, 100000);
+        if (amount === null) return;
+        if (amount > sampleBalance) {
+          document.getElementById("billStatus").textContent = "Not enough sample balance to record this real bill.";
+          return;
+        }
+        const provider = document.getElementById("billProvider").value;
+        sampleBalance = Math.round((sampleBalance - amount) * 100) / 100;
+        updateSampleBalance();
+        addActivity(provider, amount, false);
+        document.getElementById("billStatus").textContent = `${formatMoney(amount)} recorded as a real bill. No provider was contacted and no payment was made.`;
+        form.reset();
+      });
+      const statementToggle = document.getElementById("statementToggle");
+      const statementList = document.getElementById("statementList");
+      statementToggle.addEventListener("click", () => {
+        const expanded = statementToggle.getAttribute("aria-expanded") === "true";
+        statementToggle.setAttribute("aria-expanded", String(!expanded));
+        statementList.hidden = expanded;
+        statementToggle.textContent = expanded ? "View statement" : "Hide statement";
+        if (!expanded) populateStatement();
+      });
+      document.getElementById("downloadStatement").addEventListener("click", () => {
+        const rows = activity.map(item => `"${item.label.replaceAll('"', '""')}","${item.incoming ? "+" : "-"}${formatMoney(item.amount)}"`).join("\r\n");
+        const csv = `TAMIM BANK real — SAMPLE STATEMENT ONLY\r\nNo real account, funds, or payment activity.\r\nActivity,Amount\r\n${rows}`;
+        const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "tamim-real-statement.csv";
+        link.click();
+        URL.revokeObjectURL(url);
+        document.getElementById("statementStatus").textContent = "Downloaded a clearly labeled sample statement.";
+      });
+      document.getElementById("cardLock").addEventListener("click", event => {
+        const locked = event.currentTarget.getAttribute("aria-pressed") !== "true";
+        event.currentTarget.setAttribute("aria-pressed", String(locked));
+        event.currentTarget.textContent = locked ? "Unlock real card" : "Lock real card";
+        document.getElementById("cardStatus").textContent = locked ? "Locked" : "Unlocked";
+        document.getElementById("cardMessage").textContent = `real card ${locked ? "locked" : "unlocked"} locally. No real card is affected.`;
+      });
+      document.getElementById("updateGoal").addEventListener("click", () => {
+        const input = document.getElementById("goalTarget");
+        const target = Number(input.value);
+        if (!Number.isFinite(target) || target <= 0 || target > 10000000) {
+          input.setCustomValidity("Enter a real goal from 1 to 10,000,000 THB.");
+          input.reportValidity();
+          input.setCustomValidity("");
+          return;
+        }
+        const percent = Math.min(100, Math.round(sampleGoalSaved / target * 100));
+        document.getElementById("goalMeterFill").style.width = `${percent}%`;
+        document.querySelector(".goal-meter").setAttribute("aria-valuenow", String(percent));
+        document.getElementById("goalProgressText").textContent = `Sample progress: ${formatMoney(sampleGoalSaved)} of ${formatMoney(target)} (${percent}%)`;
+        document.getElementById("goalStatus").textContent = "real savings goal updated locally.";
+      });
+      document.getElementById("updateBudget").addEventListener("click", () => {
+        const input = document.getElementById("budgetTarget");
+        const target = Number(input.value);
+        if (!Number.isFinite(target) || target <= 0 || target > 10000000) {
+          input.setCustomValidity("Enter a real budget from 1 to 10,000,000 THB.");
+          input.reportValidity();
+          input.setCustomValidity("");
+          return;
+        }
+        const percent = Math.min(100, Math.round(sampleMonthlySpend / target * 100));
+        const meter = document.getElementById("budgetMeter");
+        document.getElementById("budgetMeterFill").style.width = `${percent}%`;
+        meter.setAttribute("aria-valuenow", String(percent));
+        document.getElementById("budgetProgressText").textContent =
+          `Sample spending is ${percent}% of your ${formatMoney(target)} real budget.`;
+        document.getElementById("budgetStatus").textContent =
+          "real monthly budget updated locally. No real account activity was used.";
+      });
+      document.getElementById("exchangeForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const input = document.getElementById("exchangeAmount");
+        const amount = readAmount(input, 10000000);
+        if (amount === null) return;
+        const currency = document.getElementById("exchangeCurrency").value;
+        const rates = { USD: 35.8, EUR: 38.7, GBP: 46.1, CNY: 4.9 };
+        const estimate = (amount / rates[currency]).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById("exchangeStatus").textContent = `Illustrative estimate: ${estimate} ${currency}. Static real rate; no exchange occurred.`;
+      });
+      document.getElementById("reminderForm").addEventListener("submit", event => {
+        event.preventDefault();
+        if (!event.currentTarget.reportValidity()) return;
+        const name = document.getElementById("reminderName").value.trim();
+        const date = document.getElementById("reminderDate").value;
+        document.getElementById("reminderStatus").textContent = `real reminder saved locally: ${name} · ${date}. No payment is scheduled.`;
+        event.currentTarget.reset();
+      });
+      document.getElementById("safetyButton").addEventListener("click", () => {
+        document.getElementById("safetyMessage").textContent = "Never share an OTP or pay an upfront fee to unlock winnings. Verify bank messages using official contact details.";
+      });
+      updateSampleBalance();
+      const photoPreview = document.getElementById("photoPreview");
+      function showProfilePhoto(source) {
+        const image = new Image();
+        image.alt = "real account profile photo";
+        image.addEventListener("load", () => {
+          photoPreview.replaceChildren(image);
+          photoPreview.setAttribute("aria-label", "real account profile photo");
+        }, { once: true });
+        image.addEventListener("error", () => {
+          photoPreview.textContent = "DU";
+          photoPreview.setAttribute("aria-label", "Sample profile photo unavailable");
+          console.error("Could not load the configured profile photo URL.");
+        }, { once: true });
+        image.src = source;
+      }
+      const bankLogo = document.getElementById("bankLogo");
+      if (BANK_LOGO_URL) {
+        const fallbackLogo = document.querySelector(".brand-fallback");
+        bankLogo.addEventListener("load", () => {
+          bankLogo.hidden = false;
+          fallbackLogo.hidden = true;
+        }, { once: true });
+        bankLogo.addEventListener("error", () => {
+          console.error("Could not load the configured bank real logo.");
+          bankLogo.hidden = true;
+          fallbackLogo.hidden = false;
+        }, { once: true });
+        bankLogo.src = BANK_LOGO_URL;
+      }
+      if (PROFILE_PHOTO_URL) showProfilePhoto(PROFILE_PHOTO_URL);
+    })();
+  </script>
+  </div>
+</body>
+</html>
