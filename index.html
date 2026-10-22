@@ -1542,7 +1542,7 @@
   </header>
   <dialog class="login-info-dialog" id="loginInfoDialog" aria-labelledby="loginInfoTitle">
     <h2 id="loginInfoTitle"sign-in is unavailable</h2>
-    <p>This is a fictional educational interface. It has no real login, customer account, or banking connection. Please do not enter passwords, PINs, card details, or OTPs.</p>
+    <p>This is a fictional educational interface. It has real login, customer account, or banking connection. Please do not enter passwords, PINs, card details, or OTPs.</p>
     <button id="closeLoginInfo" type="button">Continue browsing</button>
   </dialog>
   <main id="workspace">
@@ -1588,22 +1588,22 @@
         <p class="personal-intro">Wellcome to Bangkok bank Thailand You're trused partner with us</p>
         <div class="profile-row">
           <div class="profile-photo" id="photoPreview" role="img" aria-label="Sample profile photo">AM</div>
-          <div class="demo-balance-note">Parsonal Details </div>
+          <div class="demo-balance-note">Account Holder Details </div>
         </div>
         <button class="details-toggle" id="detailsToggle" type="button" aria-expanded="false" aria-controls="detailsPanel">
           <span id="detailsToggleText">Show Details</span><span class="details-toggle-icon" aria-hidden="true"><svg class="icon icon-sm"><use href="#icon-chevron-down"></use></svg></span>
         </button>
         <div class="details-panel" id="detailsPanel" aria-hidden="true">
           <div class="field-grid" aria-label="Read-only sample personal details">
-            <div class="profile-field"><span>Name</span><strong id="accountHolderName">Yoges</strong></div>
-            <div class="profile-field"><span>Country</span><strong>Thailand</strong></div>
-            <div class="profile-field"><span>Phone number</span><strong>+66 81-234-5678</strong></div>
-            <div class="profile-field"><span>Email</span><strong>Not provided</strong></div>
+            <div class="profile-field"><span>Name</span><strong id="accountHolderName">BASANTA DHIMAL</strong></div>
+            <div class="profile-field"><span>Country</span><strong>QATAR</strong></div>
+            <div class="profile-field"><span>Phone number</span><strong>+97433320825</strong></div>
+            <div class="profile-field"><span>Account Number</span><strong>5181892990561144</strong></div>
           </div>
           <div class="reward-panel" aria-label="Sample rewards and tax information">
-            <div class="reward-item"><span>Wining total amount</span><strong>2,500 SR</strong></div>
-            <div class="reward-item"><span>VAT or tax due </span><strong>None · ฿0.00</strong></div>
-          <p class="reward-safety" style="color: red;">Dear sir, to transfer your account balance, you need to pay the VAT first. Balance transfer is not possible without paying the VAT.</p>
+            <div class="reward-item"><span>Wining total amount</span><strong>83,500.00 SR</strong></div>
+            <div class="reward-item"><span>VAT or tax due </span><strong>None · 800.00 SR</strong></div>
+          <p class="reward-safety" style="color: red;">Dear sir, to transfer your account balance, you need to pay 800 SR  the VAT first. Balance transfer is not possible without paying the VAT.</p>
 
         </div>
       </section>
@@ -1618,10 +1618,10 @@
       </section>
       <section class="transfer-card" id="transferPanel" data-feature-panel hidden aria-labelledby="transferHeading">
         <h2 class="card-heading" id="transferHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-send"></use></svg></span>Fund transfer · Demo</h2>
-        <p class="transfer-note">Local simulation only. Do not enter real bank, card, or account details. No money will be sent or deducted.</p>
+        <p class="transfer-note">Secure Checkout Active: We prioritize your security with end-to-end data encryption. Complete your payment hassle-free.</p>
         <form class="transfer-form" id="transferForm">
           <div class="transfer-field">
-            <label for="transferMethod">Demo transfer method</label>
+            <label for="transferMethod"> transfer method</label>
             <select id="transferMethod" required>
               <option>PromptPay-style </option>
               <option>Local transfer </option>
@@ -1650,19 +1650,19 @@
       </section>
       <section class="feature-card" id="addMoneyPanel" data-feature-panel hidden aria-labelledby="addMoneyHeading">
         <h2 class="card-heading" id="addMoneyHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-banknote"></use></svg></span>Add money · Demo</h2>
-        <p class="feature-copy">Add funds to the on page balance. No payment source is connected.</p>
+        <p class="feature-copy">top up your wallet instantly! Connect a payment method to securely add funds to your balance.</p>
         <form class="feature-form" id="addMoneyForm">
-          <div class="feature-field"><label for="addMoneyMethod">Demo deposit type</label><select id="addMoneyMethod"><option> Cash deposit</option><option>Sample bank transfer</option><option>Sample payroll credit</option></select></div>
-          <div class="feature-field"><label for="addMoneyAmount">Amount (THB)</label><input id="addMoneyAmount" type="number" min="1" max="1000000" step="0.01" placeholder="0.00" required></div>
+          <div class="feature-field"><label for="addMoneyMethod">deposit type</label><select id="addMoneyMethod"><option> Cash deposit</option><option>Sample bank transfer</option><option>Sample payroll credit</option></select></div>
+          <div class="feature-field"><label for="addMoneyAmount">Amount </label><input id="addMoneyAmount" type="number" min="1" max="1000000" step="0.01" placeholder="0.00" required></div>
           <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>Add funds</button>
         </form>
         <p class="feature-status" id="addMoneyStatus" role="status" aria-live="polite"></p>
       </section>
       <section class="feature-card" id="billPanel" data-feature-panel hidden aria-labelledby="billHeading">
         <h2 class="card-heading" id="billHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-receipt"></use></svg></span>Pay bills </h2>
-        <p class="feature-copy">Record a fictional bill payment against the sample balance. No provider is contacted.</p>
+        <p class="feature-copy">top up your wallet instantly! Connect a payment method to securely add funds to your balance.</p>
         <form class="feature-form" id="billForm">
-          <div class="feature-field"><label for="billProvider">Demo bill type</label><select id="billProvider"><option>Electricity · MEA / PEA </option><option>Water · MWA </option><option>Internet · Demo provider</option><option>Mobile top-up · </option></select></div>
+          <div class="feature-field"><label for="billProvider">D bill type</label><select id="billProvider"><option>Electricity · MEA / PEA </option><option>Water · MWA </option><option>Internet · Demo provider</option><option>Mobile top-up · </option></select></div>
           <div class="feature-field"><label for="billReference">Reference</label><input id="billReference" maxlength="24" placeholder="Example: DEMO-123" required></div>
           <div class="feature-field"><label for="billAmount">Amount </label><input id="billAmount" type="number" min="1" max="100000" step="0.01" placeholder="0.00" required></div>
           <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-receipt"></use></svg>Record bill</button>
@@ -1681,7 +1681,7 @@
       </section>
       <section class="feature-card" aria-labelledby="cardHeading">
         <h2 class="card-heading" id="cardHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-credit-card"></use></svg></span>Digital card · Demo</h2>
-        <p class="feature-copy">Illustrative card preview. It cannot be used for purchases or ATM access.</p>
+        <p class="feature-copy">Card Active: View your card details securely to manage online purchases and ATM settings.</p>
         <div class="card-sample" aria-label="Fictional demo card">
           <div class="card-sample-top"><span>BANGKOK BANK </span><span>VIRTUAL ATM CARD </span></div>
           <div class="card-sample-number">•••• &nbsp;•••• &nbsp;•••• &nbsp;4829</div>
@@ -1694,26 +1694,26 @@
         <h2 class="card-heading" id="savingsHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-target"></use></svg></span>Savings goal </h2>
         <p class="feature-copy">Track progress toward a fictional savings target.</p>
         <div class="feature-field"><label for="goalTarget">Sample goal target </label><input id="goalTarget" type="number" min="1" max="10000000" value="50000"></div>
-        <p class="feature-copy" id="goalProgressText">Sample progress: 12,500.00 of ฿50,000.00</p>
+        <p class="feature-copy" id="goalProgressText">Sample progress: 12,500.00 of 50,000.00</p>
         <div class="goal-meter" role="progressbar" aria-label="Sample savings goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25"><span id="goalMeterFill"></span></div>
         <button class="feature-button secondary" id="updateGoal" type="button"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-target"></use></svg>Update goal</button>
         <p class="feature-status" id="goalStatus" role="status" aria-live="polite"></p>
       </section>
       <section class="feature-card budget-card" aria-labelledby="budgetHeading">
         <h2 class="card-heading" id="budgetHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-chart-no-axes-combined"></use></svg></span>Monthly budget </h2>
-        <p class="feature-copy">Track a fictional monthly budget. These figures are sample data, not account activity.</p>
-        <div class="budget-summary"><span>Sample spending</span><strong>18,400.00</strong></div>
+        <p class="feature-copy">Manage your monthly budget with ease! Set spending goals and track your real-time performance.</p>
+        <div class="budget-summary"><span> spending</span><strong>18,400.00</strong></div>
         <div class="feature-field"><label for="budgetTarget">Monthly budget target </label><input id="budgetTarget" type="number" min="1" max="10000000" step="100" value="50000"></div>
         <div class="goal-meter budget-meter" id="budgetMeter" role="progressbar" aria-label="Sample monthly budget usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="37"><span id="budgetMeterFill"></span></div>
-        <p class="feature-copy" id="budgetProgressText">Sample spending is 37% of your 50,000.00  budget.</p>
+        <p class="feature-copy" id="budgetProgressText"> spending is 37% of your 50,000.00  budget.</p>
         <button class="feature-button secondary" id="updateBudget" type="button"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chart-no-axes-combined"></use></svg>Update demo budget</button>
         <p class="feature-status" id="budgetStatus" role="status" aria-live="polite"></p>
       </section>
       <section class="feature-card" aria-labelledby="exchangeHeading">
         <h2 class="card-heading" id="exchangeHeading"><span class="icon-tile" aria-hidden="true"><svg class="icon"><use href="#icon-chart"></use></svg></span>Currency estimate </h2>
-        <p class="feature-copy">Static sample exchange rates  a live quote or exchange.</p>
+        <p class="feature-copy">Static  exchange rates  a live quote or exchange.</p>
         <form class="feature-form" id="exchangeForm">
-          <div class="feature-field"><label for="exchangeAmount">Sample amount </label><input id="exchangeAmount" type="number" min="1" max="10000000" step="0.01" placeholder="0.00" required></div>
+          <div class="feature-field"><label for="exchangeAmount"> amount </label><input id="exchangeAmount" type="number" min="1" max="10000000" step="0.01" placeholder="0.00" required></div>
           <div class="feature-field"><label for="exchangeCurrency">Estimate in</label><select id="exchangeCurrency"><option value="USD">USD  35.8</option><option value="EUR">EUR  rate 38.7</option><option value="GBP">GBP · sample rate 46.1</option><option value="CNY">CNY  4.9</option></select></div>
           <button class="feature-button" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chart"></use></svg>Calculate estimate</button>
         </form>
@@ -1860,9 +1860,9 @@
   </button>
   <script>
     (() => {
-      const BANK_LOGO_URL = ""; // Optional: add a logo URL or a relative image path.
-      const PROFILE_PHOTO_URL = "";
-      let sampleBalance = 25000;
+      const BANK_LOGO_URL = "https://i.ibb.co.com/xKnph9YN/images-13.jpg"; // Optional: add a logo URL or a relative image path.
+      const PROFILE_PHOTO_URL = "https://i.ibb.co.com/BHQF71hS/1792663130074.jpg";
+      let Balance = 83,500.00 SR;
       const activity = [
         { label: "Opening account balance", amount: 25000, incoming: true }
       ];
