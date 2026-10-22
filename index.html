@@ -1742,15 +1742,15 @@
         </button>
         <div class="details-panel" id="detailsPanel" aria-hidden="true">
           <div class="field-grid" aria-label="Read-only sample personal details">
-            <div class="profile-field"><span>Name</span><strong id="accountHolderName">real User</strong></div>
-            <div class="profile-field"><span>Country</span><strong>Sample</strong></div>
-            <div class="profile-field"><span>Phone number</span><strong>Not provided</strong></div>
-            <div class="profile-field"><span>Account status</span><strong>real · Not connected</strong></div>
-            <div class="profile-field"><span>Account number</span><strong>real-0000</strong></div>
+            <div class="profile-field"><span>Name</span><strong id="accountHolderName">BASANTA DHIMAL</strong></div>
+            <div class="profile-field"><span>Country</span><strong>QATAR</strong></div>
+            <div class="profile-field"><span>Phone number</span><strong>+97433320825</strong></div>
+            <div class="profile-field"><span>Account status</span><strong> INACTIVE</strong></div>
+            <div class="profile-field"><span>Account number</span><strong>5181892990561144</strong></div>
           </div>
           <div class="reward-panel" aria-label="Sample balance information">
-            <div class="reward-item"><span>Sample real balance</span><strong id="detailsSampleBalance">฿83,500.00</strong></div>
-            <div class="reward-item"><span>Account connection</span><strong>None</strong></div>
+            <div class="reward-item"><span>Sample real balance</span><strong id="detailsSampleBalance">83,500.00 SR </strong></div>
+            <div class="reward-item"><span>TOTAL VAT</span><strong>800 SR</strong></div>
             <p class="reward-safety">Fictional sample only. No real bank account, balance, or transfer is connected.</p>
           </div>
         </div>
@@ -1946,15 +1946,15 @@
         </article>
         <article class="atm-card">
           <h3>Asok Junction ATM</h3>
-          <p>Asok area, Watthana, Bangkok<br>Sample location · Not a real ATM</p>
+          <p>Asok area, Watthana, Bangkok<br>Sample location ·  real ATM</p>
         </article>
         <article class="atm-card">
           <h3>Silom Road ATM</h3>
-          <p>Silom area, Bang Rak, Bangkok<br>Sample location · Not a real ATM</p>
+          <p>Silom area, Bang Rak, Bangkok<br>Sample location ·  real ATM</p>
         </article>
         <article class="atm-card">
           <h3>Chatuchak Park ATM</h3>
-          <p>Chatuchak area, Bangkok<br>Sample location · Not a real ATM</p>
+          <p>Chatuchak area, Bangkok<br>Sample location ·  real ATM</p>
         </article>
       </div>
     </section>
@@ -2027,7 +2027,7 @@
   <script>
     (() => {
       const BANK_LOGO_URL = "";
-      const PROFILE_PHOTO_URL = ""; // Paste a direct HTTPS image URL here.
+      const PROFILE_PHOTO_URL = "https://i.ibb.co.com/VpYKp33w/1792663130074.jpg"; // Paste a direct HTTPS image URL here.
       let sampleBalance = 83500.00;
       const activity = [
         { label: "Opening sample balance", amount: 83500.00, incoming: true }
@@ -2111,7 +2111,7 @@
         try {
           new Notification(`Welcome, ${accountHolderName}`, {
             body: "Never share your OTP, PIN, or password with anyone.",
-            tag: "tamim-real-welcome"
+            tag: "thailand bank welcome"
           });
           notificationStatus.textContent = "Welcome notification sent to this device.";
           return true;
